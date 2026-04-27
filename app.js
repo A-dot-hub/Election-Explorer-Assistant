@@ -5,7 +5,7 @@
 
 // Application State
 const state = {
-    view: 'landing', // 'landing', 'journey', 'dashboard'
+    view: 'landing', // 'landing'
     currentStep: 0,
     totalSteps: electionData.steps.length,
     quiz: {
@@ -81,11 +81,11 @@ function init() {
 function bindEvents() {
     btnHome.addEventListener('click', navigateHome);
     btnStartJourney.addEventListener('click', startJourney);
-    
+
     btnPrev.addEventListener('click', prevStep);
     btnNext.addEventListener('click', nextStep);
     btnLearnMore.addEventListener('click', toggleLearnMore);
-    
+
     btnStartQuiz.addEventListener('click', startQuiz);
     btnNextQuestion.addEventListener('click', handleNextQuestion);
     btnRetryQuiz.addEventListener('click', startQuiz);
@@ -95,22 +95,22 @@ function bindEvents() {
 
 function switchView(viewName) {
     state.view = viewName;
-    
+
     // Hide all
     Object.values(views).forEach(v => {
         v.classList.remove('active');
     });
-    
+
     // Show target
     views[viewName].classList.add('active');
-    
+
     // Toggle Nav Home button
-    if(viewName === 'landing') {
+    if (viewName === 'landing') {
         navActions.classList.add('hidden');
     } else {
         navActions.classList.remove('hidden');
     }
-    
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -132,14 +132,14 @@ function buildStepper() {
         const node = document.createElement('div');
         node.className = 'step-node';
         node.innerText = i + 1;
-        
+
         // Allow clicking past steps to navigate back easily
         node.addEventListener('click', () => {
             if (i <= state.currentStep) {
                 goToStep(i);
             }
         });
-        
+
         stepperNodesContainer.appendChild(node);
     }
 }
@@ -148,7 +148,7 @@ function updateStepperUI() {
     // Update progress bar
     const progress = (state.currentStep / (state.totalSteps - 1)) * 100;
     stepperProgress.style.width = `${progress}%`;
-    
+
     // Update nodes
     const nodes = stepperNodesContainer.children;
     for (let i = 0; i < nodes.length; i++) {
@@ -167,25 +167,25 @@ function updateStepperUI() {
 
 function updateJourneyUI() {
     const data = electionData.steps[state.currentStep];
-    
+
     // Animate Card Change
     stepCardWrapper.style.opacity = '0';
     stepCardWrapper.style.transform = 'translateY(10px)';
-    
+
     setTimeout(() => {
         // Reset Learn More state
         learnMoreBox.classList.remove('expanded');
-        
+
         // Inject Data
         uiStepIcon.innerHTML = `<i class="${data.icon}"></i>`;
         uiStepNumber.innerText = `Step ${state.currentStep + 1} of ${state.totalSteps}`;
         uiStepTitle.innerText = data.title;
         uiStepExp.innerText = data.explanation;
         uiStepDetails.innerText = data.learnMore;
-        
+
         // Update Buttons
         btnPrev.disabled = state.currentStep === 0;
-        
+
         if (state.currentStep === state.totalSteps - 1) {
             btnNext.innerHTML = 'Finish Journey <i class="fa-solid fa-flag-checkered"></i>';
             btnNext.classList.remove('btn-primary');
@@ -195,9 +195,9 @@ function updateJourneyUI() {
             btnNext.innerHTML = 'Next Step <i class="fa-solid fa-arrow-right"></i>';
             btnNext.style.background = ''; // reset to css default
         }
-        
+
         updateStepperUI();
-        
+
         // Fade in
         stepCardWrapper.style.opacity = '1';
         stepCardWrapper.style.transform = 'translateY(0)';
@@ -242,7 +242,7 @@ function buildKnowledgeCards() {
         el.className = 'k-card';
         // Add staggered animation delay
         el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
-        
+
         el.innerHTML = `
             <div class="k-header">
                 <div class="k-title-group">
@@ -255,11 +255,11 @@ function buildKnowledgeCards() {
                 <p>${card.content}</p>
             </div>
         `;
-        
+
         el.addEventListener('click', () => {
             el.classList.toggle('expanded');
         });
-        
+
         knowledgeGrid.appendChild(el);
     });
 }
@@ -270,34 +270,34 @@ function startQuiz() {
     state.quiz.active = true;
     state.quiz.currentQuestion = 0;
     state.quiz.score = 0;
-    
+
     quizIntro.classList.add('hidden');
     quizResults.classList.add('hidden');
     quizActive.classList.remove('hidden');
-    
+
     loadQuestion();
 }
 
 function loadQuestion() {
     const qData = electionData.quiz[state.quiz.currentQuestion];
-    
+
     // Reset UI
     uiQFeedback.classList.add('hidden');
     uiQFeedback.className = 'q-feedback hidden'; // clear success/error classes
     btnNextQuestion.classList.add('hidden');
     uiQOptions.innerHTML = '';
-    
+
     // Set Header Info
     uiQProgress.innerText = `Question ${state.quiz.currentQuestion + 1}/${state.quiz.total}`;
     uiQScore.innerText = state.quiz.score;
     uiQText.innerText = qData.question;
-    
+
     // Generate Options
     qData.options.forEach((optText, index) => {
         const btn = document.createElement('button');
         btn.className = 'opt-btn';
         btn.innerHTML = `<span>${optText}</span> <i class="fa-solid fa-circle opt-icon" style="color: var(--border)"></i>`;
-        
+
         btn.addEventListener('click', () => submitAnswer(index, btn));
         uiQOptions.appendChild(btn);
     });
@@ -306,36 +306,36 @@ function loadQuestion() {
 function submitAnswer(selectedIndex, selectedBtn) {
     const qData = electionData.quiz[state.quiz.currentQuestion];
     const isCorrect = selectedIndex === qData.answer;
-    
+
     // Lock options
     const options = uiQOptions.querySelectorAll('.opt-btn');
     options.forEach(btn => btn.disabled = true);
-    
+
     // Handle UI updates based on result
     uiQFeedback.classList.remove('hidden');
-    
+
     if (isCorrect) {
         state.quiz.score++;
         uiQScore.innerText = state.quiz.score;
-        
+
         selectedBtn.classList.add('correct');
         selectedBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-check opt-icon';
-        
+
         uiQFeedback.classList.add('success');
         uiQFeedback.innerHTML = `<i class="fa-solid fa-check-circle"></i> <span class="text">Correct! Well done.</span>`;
     } else {
         selectedBtn.classList.add('wrong');
         selectedBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-xmark opt-icon';
-        
+
         // Highlight correct option
         const correctBtn = options[qData.answer];
         correctBtn.classList.add('correct');
         correctBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-check opt-icon';
-        
+
         uiQFeedback.classList.add('error');
         uiQFeedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span class="text">Incorrect. The right answer is highlighted.</span>`;
     }
-    
+
     // Setup next button
     btnNextQuestion.classList.remove('hidden');
     if (state.quiz.currentQuestion === state.quiz.total - 1) {
@@ -357,26 +357,26 @@ function handleNextQuestion() {
 function showQuizResults() {
     quizActive.classList.add('hidden');
     quizResults.classList.remove('hidden');
-    
+
     const score = state.quiz.score;
     const total = state.quiz.total;
     const percentage = (score / total) * 100;
-    
+
     // Update Score Text
     uiFinalScoreText.innerText = `${score}/${total}`;
-    
+
     // Animate Circular Progress based on percentage
     // stroke-dasharray format: "value, 100"
     setTimeout(() => {
         // Change color based on score
         let strokeColor = 'var(--error)';
-        if(percentage >= 80) strokeColor = 'var(--success)';
-        else if(percentage >= 50) strokeColor = '#F59E0B'; // Warning yellow
-        
+        if (percentage >= 80) strokeColor = 'var(--success)';
+        else if (percentage >= 50) strokeColor = '#F59E0B'; // Warning yellow
+
         uiScoreCirclePath.style.stroke = strokeColor;
         uiScoreCirclePath.setAttribute('stroke-dasharray', `${percentage}, 100`);
     }, 100);
-    
+
     // Feedback Message
     if (score === total) {
         uiFinalMessage.innerText = "Perfect score! You are a true democratic scholar.";
