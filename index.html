@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Explorer Assistant</title>
+    <!-- Google Fonts: Outfit for a modern, friendly look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main App Container -->
+    <main id="app">
+        
+        <!-- Navbar -->
+        <nav class="glass-nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fa-solid fa-check-to-slot"></i>
+                    <span>Election Explorer</span>
+                </div>
+                <div id="nav-actions" class="hidden">
+                    <button id="btn-home" class="btn-icon" title="Home"><i class="fa-solid fa-house"></i></button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- View 1: Landing Page -->
+        <section id="view-landing" class="view active">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="badge">Interactive Learning</div>
+                    <h1>Master the <span class="gradient-text">Election Process</span></h1>
+                    <p>Discover how democracy works through our guided, step-by-step educational journey. Simple, beautiful, and interactive.</p>
+                    <button id="btn-start-journey" class="btn-primary btn-large">
+                        Start Learning Journey <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card c1"><i class="fa-solid fa-person-booth"></i></div>
+                    <div class="floating-card c2"><i class="fa-solid fa-id-card"></i></div>
+                    <div class="floating-card c3"><i class="fa-solid fa-check"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- View 2: Journey Flow -->
+        <section id="view-journey" class="view">
+            
+            <!-- Modern Stepper -->
+            <div class="stepper-wrapper">
+                <div class="stepper-track">
+                    <div id="stepper-progress" class="stepper-progress"></div>
+                </div>
+                <div id="stepper-nodes" class="stepper-nodes">
+                    <!-- Nodes generated dynamically -->
+                </div>
+            </div>
+
+            <!-- Active Step Card -->
+            <div class="step-card-wrapper animate-slide-up" id="step-card-wrapper">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon-large" id="step-icon"><i class="fa-solid fa-id-card"></i></div>
+                        <div>
+                            <span class="step-subtitle" id="step-number">Step 1 of 7</span>
+                            <h2 id="step-title">Voter Registration</h2>
+                        </div>
+                    </div>
+                    
+                    <p class="step-explanation" id="step-explanation">Explanation here.</p>
+                    
+                    <div class="learn-more-box">
+                        <button id="btn-learn-more" class="btn-outline">
+                            <i class="fa-solid fa-lightbulb"></i> Learn More <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                        </button>
+                        <div id="learn-more-content" class="expandable-content">
+                            <div class="content-inner" id="step-details">
+                                Detailed information goes here.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-actions">
+                        <button id="btn-prev" class="btn-secondary" disabled>
+                            <i class="fa-solid fa-arrow-left"></i> Previous
+                        </button>
+                        <button id="btn-next" class="btn-primary">
+                            Next Step <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- View 3: Dashboard (Cards & Quiz) -->
+        <section id="view-dashboard" class="view">
+            
+            <div class="dashboard-header animate-slide-up">
+                <div class="success-badge"><i class="fa-solid fa-award"></i></div>
+                <h2>Journey Completed!</h2>
+                <p>You've successfully explored the core steps of the election process.</p>
+            </div>
+
+            <!-- Knowledge Cards Section -->
+            <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
+                <h3><i class="fa-solid fa-book-open"></i> Knowledge Base</h3>
+                <p>Expand cards to learn more</p>
+            </div>
+            
+            <div id="knowledge-grid" class="cards-grid animate-slide-up" style="animation-delay: 0.2s">
+                <!-- Cards generated dynamically -->
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="section-title animate-slide-up" style="animation-delay: 0.3s">
+                <h3><i class="fa-solid fa-brain"></i> Test Your Knowledge</h3>
+            </div>
+
+            <div class="quiz-container animate-slide-up" style="animation-delay: 0.4s">
+                
+                <!-- Quiz Intro -->
+                <div id="quiz-intro" class="quiz-panel text-center">
+                    <i class="fa-solid fa-clipboard-question quiz-icon-large"></i>
+                    <h3>Ready for a quick challenge?</h3>
+                    <p>Take this 5-question quiz to see what you've learned.</p>
+                    <button id="btn-start-quiz" class="btn-primary">Start Quiz</button>
+                </div>
+
+                <!-- Active Quiz -->
+                <div id="quiz-active" class="quiz-panel hidden">
+                    <div class="quiz-header-bar">
+                        <span class="q-progress" id="quiz-progress">Question 1/5</span>
+                        <div class="q-score-badge">Score: <span id="quiz-score-display">0</span></div>
+                    </div>
+                    
+                    <h3 class="q-text" id="quiz-question">Question text goes here?</h3>
+                    
+                    <div id="quiz-options" class="q-options">
+                        <!-- Options generated dynamically -->
+                    </div>
+                    
+                    <div class="q-footer">
+                        <div id="quiz-feedback" class="q-feedback hidden">
+                            <i class="icon"></i> <span class="text"></span>
+                        </div>
+                        <button id="btn-next-question" class="btn-primary hidden">
+                            Next <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quiz-results" class="quiz-panel hidden text-center">
+                    <i class="fa-solid fa-trophy text-gold result-icon"></i>
+                    <h3>Quiz Complete!</h3>
+                    
+                    <div class="circular-score">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg"
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" id="score-circle-path"
+                              stroke-dasharray="0, 100"
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="20.35" class="percentage" id="final-score-text">0/5</text>
+                        </svg>
+                    </div>
+                    
+                    <p id="quiz-final-message" class="result-message">Great job!</p>
+                    <button id="btn-retry-quiz" class="btn-outline mt-4">
+                        <i class="fa-solid fa-rotate-right"></i> Retake Quiz
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Background Decoration -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
