@@ -31,6 +31,7 @@
                 <li onclick="switchView('dashboard')">Knowledge Base</li>
                 <li onclick="switchView('dashboard')">Quiz</li>
                 <li onclick="switchView('timeline')">Timeline</li>
+                <li onclick="switchView('voterid')">Voter ID</li>
                 <li onclick="alert('Feature coming soon!')">Resources</li>
                 <li onclick="alert('Feature coming soon!')">About</li>
             </ul>
@@ -174,6 +175,15 @@
                     <div class="f-content">
                         <h4>Timeline</h4>
                         <p>See the election process as a timeline</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right f-arrow"></i>
+                </div>
+
+                <div class="feature-card" onclick="switchView('voterid')">
+                    <div class="f-icon bg-light-blue"><i class="fa-solid fa-id-card-clip text-blue"></i></div>
+                    <div class="f-content">
+                        <h4>Voter ID Card</h4>
+                        <p>Explore your digital Voter ID</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -481,6 +491,14 @@
             <div id="timeline-container" class="timeline-container animate-slide-up" style="animation-delay: 0.2s">
                 <!-- Dynamically generated timeline -->
             </div>
+        </section>
+
+        <!-- View 5: Voter ID Card -->
+        <section id="view-voterid" class="view hidden">
+            <button class="btn-outline mb-4" onclick="switchView('landing')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+            <div id="voterid-root" class="animate-slide-up" style="animation-delay: 0.1s"></div>
         </section>
 
     </main>

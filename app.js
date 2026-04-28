@@ -23,7 +23,8 @@ const views = {
     landing: document.getElementById('view-landing'),
     journey: document.getElementById('view-journey'),
     dashboard: document.getElementById('view-dashboard'),
-    timeline: document.getElementById('view-timeline')
+    timeline: document.getElementById('view-timeline'),
+    voterid: document.getElementById('view-voterid')
 };
 
 // Journey Stepper & Card
@@ -72,11 +73,14 @@ const landingProgressCircle = document.getElementById('landing-progress-circle')
 
 // --- Initialization ---
 
+let currentLang = 'en';
+
 function init() {
     bindEvents();
     buildStepper();
     buildKnowledgeCards();
     buildTimeline();
+    buildVoterIdUI();
     updateLandingProgress();
     
     // Check initial hash for routing
@@ -447,6 +451,170 @@ function buildTimeline() {
         `;
         
         timelineContainer.appendChild(item);
+    });
+}
+
+// --- Voter ID Logic ---
+function buildVoterIdUI() {
+    const root = document.getElementById('voterid-root');
+    if (!root) return;
+    const tl = i18n[currentLang];
+    const data = voterIdData;
+    
+    // Helper to get translated field or fallback to English
+    const getVal = (field) => {
+        if (typeof field === 'object') return field[currentLang] || field['en'];
+        return field;
+    };
+
+    root.innerHTML = `
+        <div class="vid-header">
+            <div class="vid-h-left">
+                <i class="fa-solid fa-id-card-clip vid-h-icon"></i>
+                <div class="vid-h-titles">
+                    <h2 class="vid-h-title">${tl.title}</h2>
+                    <p class="vid-h-sub">${tl.subtitle}</p>
+                </div>
+            </div>
+            <div class="vid-h-right">
+                <label for="vid-lang-select" class="vid-lang-lbl">${tl.chooseLang}:</label>
+                <select id="vid-lang-select" class="vid-lang-select">
+                    ${languages.map(l => `<option value="${l.code}" ${l.code === currentLang ? 'selected' : ''}>${l.name}</option>`).join('')}
+                </select>
+            </div>
+        </div>
+
+        <div class="vid-cards-wrapper">
+            <!-- FRONT -->
+            <div class="vid-card vid-front">
+                <div class="vid-ribbon">FRONT</div>
+                <div class="vid-top-bar">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem" class="vid-emblem">
+                    <div class="vid-eci-text">
+                        <h3>${tl.eciLocal}</h3>
+                        <h4>${tl.eci}</h4>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Election_Commission_of_India_Logo_2.png" alt="ECI Logo" class="vid-eci-logo">
+                </div>
+                <div class="vid-f-content">
+                    <div class="vid-epic-hero">${data.epicNo}</div>
+                    <div class="vid-person-info">
+                        <div class="vid-photo-wrap">
+                            <div class="vid-photo-placeholder"><i class="fa-solid fa-user"></i></div>
+                        </div>
+                        <div class="vid-details">
+                            <div class="vid-field">
+                                <span class="vid-lbl">${tl.nameLbl}</span>
+                                <strong class="vid-val">${getVal(data.name)}</strong>
+                            </div>
+                            <div class="vid-field">
+                                <span class="vid-lbl">${tl.fnameLbl}</span>
+                                <strong class="vid-val">${getVal(data.fatherName)}</strong>
+                            </div>
+                            <div class="vid-field">
+                                <span class="vid-lbl">${tl.genderLbl}</span>
+                                <strong class="vid-val">${getVal(data.gender)}</strong>
+                            </div>
+                            <div class="vid-field">
+                                <span class="vid-lbl">${tl.dobLbl}</span>
+                                <strong class="vid-val">${data.dob}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vid-footer">${tl.footerFront}</div>
+            </div>
+
+            <!-- BACK -->
+            <div class="vid-card vid-back">
+                <div class="vid-ribbon">BACK</div>
+                <div class="vid-b-content">
+                    <div class="vid-b-left">
+                        <div class="vid-qr-placeholder"><i class="fa-solid fa-qrcode"></i></div>
+                        <div class="vid-scan-txt">${tl.scanApp}</div>
+                        <div class="vid-qr-epic">${data.epicNo}</div>
+                    </div>
+                    <div class="vid-b-right">
+                        <div class="vid-field-flex">
+                            <span class="vid-lbl">${tl.epicLbl}</span>
+                            <span class="vid-val">${data.epicNo}</span>
+                        </div>
+                        <div class="vid-field-flex">
+                            <span class="vid-lbl">${tl.serialLbl}</span>
+                            <span class="vid-val">${data.serialNo}</span>
+                        </div>
+                        <div class="vid-field-flex">
+                            <span class="vid-lbl vid-lbl-long">${tl.assemblyLbl}</span>
+                            <span class="vid-val">${getVal(data.assembly)}</span>
+                        </div>
+                        <div class="vid-field-flex">
+                            <span class="vid-lbl vid-lbl-long">${tl.partLbl}</span>
+                            <span class="vid-val">${getVal(data.partNo)}</span>
+                        </div>
+                        <div class="vid-field-flex vid-field-block">
+                            <span class="vid-lbl">${tl.pollingLbl}</span>
+                            <span class="vid-val">${getVal(data.pollingStation)}</span>
+                        </div>
+                        <div class="vid-field-flex mt-2">
+                            <span class="vid-lbl">${tl.downDate}</span>
+                            <span class="vid-val">${data.downloadDate}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vid-b-footer">
+                    <div class="vid-bf-item"><i class="fa-solid fa-phone"></i> ${tl.helpLine}</div>
+                    <div class="vid-bf-item"><i class="fa-solid fa-globe"></i> ${tl.website}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vid-info-section">
+            <div class="vid-qr-details">
+                <div class="vid-qr-placeholder-sm"><i class="fa-solid fa-qrcode"></i></div>
+                <p class="vid-sm-txt bold mt-1">${tl.scanApp}</p>
+                <div class="vid-sm-info">
+                    <div><b>${tl.downDate}</b> ${data.downloadDate}</div>
+                    <div><b>${tl.pollDate}</b> ${tl.na}</div>
+                    <div><b>${tl.timings}</b> ${tl.na}</div>
+                </div>
+            </div>
+
+            <div class="vid-info-card">
+                <div class="vid-info-grid">
+                    <div class="vid-info-left">
+                        <h3 class="vid-info-title">${tl.aboutTitle}</h3>
+                        <ul class="vid-info-list">
+                            <li>
+                                <div class="vid-info-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                                <span>${tl.about1}</span>
+                            </li>
+                            <li>
+                                <div class="vid-info-icon"><i class="fa-solid fa-user-check"></i></div>
+                                <span>${tl.about2}</span>
+                            </li>
+                            <li>
+                                <div class="vid-info-icon"><i class="fa-solid fa-fingerprint"></i></div>
+                                <span>${tl.about3}</span>
+                            </li>
+                            <li>
+                                <div class="vid-info-icon"><i class="fa-solid fa-check-to-slot"></i></div>
+                                <span>${tl.about4}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('vid-lang-select').addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        // Re-render UI with simple fade transition
+        root.style.opacity = '0';
+        setTimeout(() => {
+            buildVoterIdUI();
+            root.style.opacity = '1';
+        }, 300);
     });
 }
 
