@@ -22,7 +22,8 @@ const state = {
 const views = {
     landing: document.getElementById('view-landing'),
     journey: document.getElementById('view-journey'),
-    dashboard: document.getElementById('view-dashboard')
+    dashboard: document.getElementById('view-dashboard'),
+    timeline: document.getElementById('view-timeline')
 };
 
 // Journey Stepper & Card
@@ -75,6 +76,7 @@ function init() {
     bindEvents();
     buildStepper();
     buildKnowledgeCards();
+    buildTimeline();
     updateLandingProgress();
     
     // Check initial hash for routing
@@ -94,10 +96,18 @@ function bindEvents() {
     btnRetryQuiz.addEventListener('click', startQuiz);
     
     if (btnThemeToggle) {
+        // Init theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+            btnThemeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        }
+        
         btnThemeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             const isDark = document.body.classList.contains('dark');
             btnThemeToggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
 }
@@ -286,7 +296,17 @@ function buildKnowledgeCards() {
         `;
         
         el.addEventListener('click', () => {
-            el.classList.toggle('expanded');
+            const isCurrentlyExpanded = el.classList.contains('expanded');
+            
+            // Close all
+            document.querySelectorAll('.k-card-dash').forEach(cardEl => {
+                cardEl.classList.remove('expanded');
+            });
+            
+            // Open this one if it wasn't already expanded
+            if (!isCurrentlyExpanded) {
+                el.classList.add('expanded');
+            }
         });
         
         knowledgeGrid.appendChild(el);
@@ -402,6 +422,32 @@ function showQuizResults() {
     } else {
         uiFinalMessage.innerText = "Keep exploring the journey to improve your knowledge!";
     }
+}
+
+// --- Timeline Logic ---
+function buildTimeline() {
+    const timelineContainer = document.getElementById('timeline-container');
+    if (!timelineContainer) return;
+    
+    timelineContainer.innerHTML = '';
+    
+    electionData.steps.forEach((step, index) => {
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        
+        item.innerHTML = `
+            <div class="timeline-marker bg-light-blue">
+                <i class="${step.icon} text-blue"></i>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-step">Step ${index + 1}</div>
+                <h3>${step.title}</h3>
+                <p>${step.explanation}</p>
+            </div>
+        `;
+        
+        timelineContainer.appendChild(item);
+    });
 }
 
 // Start App

@@ -30,7 +30,7 @@
                 <li onclick="switchView('journey')">Journey</li>
                 <li onclick="switchView('dashboard')">Knowledge Base</li>
                 <li onclick="switchView('dashboard')">Quiz</li>
-                <li onclick="alert('Feature coming soon!')">Timeline</li>
+                <li onclick="switchView('timeline')">Timeline</li>
                 <li onclick="alert('Feature coming soon!')">Resources</li>
                 <li onclick="alert('Feature coming soon!')">About</li>
             </ul>
@@ -169,7 +169,7 @@
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card" onclick="switchView('timeline')">
                     <div class="f-icon bg-light-red"><i class="fa-regular fa-clock text-red"></i></div>
                     <div class="f-content">
                         <h4>Timeline</h4>
@@ -465,6 +465,21 @@
                     </button>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- View 4: Timeline -->
+        <section id="view-timeline" class="view hidden">
+            <button class="btn-outline mb-4" onclick="switchView('landing')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </button>
+            <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
+                <h3><i class="fa-regular fa-clock text-red"></i> Election Process Timeline</h3>
+                <p>An overview of how events unfold</p>
+            </div>
+            
+            <div id="timeline-container" class="timeline-container animate-slide-up" style="animation-delay: 0.2s">
+                <!-- Dynamically generated timeline -->
             </div>
         </section>
 
