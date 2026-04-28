@@ -82,12 +82,28 @@ function init() {
     buildTimeline();
     buildVoterIdUI();
     updateLandingProgress();
+    updateAppLanguage();
     
     // Check initial hash for routing
     if (window.location.hash) {
         const targetView = window.location.hash.substring(1);
         if (views[targetView]) switchView(targetView);
     }
+}
+
+function updateAppLanguage() {
+    const tl = appTranslations[currentLang];
+    if (!tl) return;
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (tl[key]) {
+            el.innerHTML = tl[key];
+        }
+    });
+
+    // Also update voter id UI if currently rendered
+    buildVoterIdUI();
 }
 
 function bindEvents() {
@@ -98,6 +114,14 @@ function bindEvents() {
     btnStartQuiz.addEventListener('click', startQuiz);
     btnNextQuestion.addEventListener('click', handleNextQuestion);
     btnRetryQuiz.addEventListener('click', startQuiz);
+    
+    const globalLangSel = document.getElementById('global-lang-select');
+    if (globalLangSel) {
+        globalLangSel.addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            updateAppLanguage();
+        });
+    }
     
     if (btnThemeToggle) {
         // Init theme
@@ -476,12 +500,6 @@ function buildVoterIdUI() {
                     <p class="vid-h-sub">${tl.subtitle}</p>
                 </div>
             </div>
-            <div class="vid-h-right">
-                <label for="vid-lang-select" class="vid-lang-lbl">${tl.chooseLang}:</label>
-                <select id="vid-lang-select" class="vid-lang-select">
-                    ${languages.map(l => `<option value="${l.code}" ${l.code === currentLang ? 'selected' : ''}>${l.name}</option>`).join('')}
-                </select>
-            </div>
         </div>
 
         <div class="vid-cards-wrapper">
@@ -606,16 +624,6 @@ function buildVoterIdUI() {
             </div>
         </div>
     `;
-
-    document.getElementById('vid-lang-select').addEventListener('change', (e) => {
-        currentLang = e.target.value;
-        // Re-render UI with simple fade transition
-        root.style.opacity = '0';
-        setTimeout(() => {
-            buildVoterIdUI();
-            root.style.opacity = '1';
-        }, 300);
-    });
 }
 
 // Start App

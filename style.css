@@ -251,6 +251,10 @@ button:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important;
 
 .nav-actions { display: flex; gap: 1rem; align-items: center; }
 
+.lang-switcher { display: flex; align-items: center; }
+.nav-lang-sel { padding: 0.4rem 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 500; cursor: pointer; background: var(--bg-main); color: var(--text-dark); outline: none; }
+.nav-lang-sel:focus { border-color: var(--primary); }
+
 /* View Animations */
 .view { display: none; opacity: 0; animation: fadeIn 0.4s ease forwards; }
 .view.active { display: block; }

@@ -26,20 +26,28 @@
             </div>
             
             <ul class="nav-links">
-                <li class="active" onclick="switchView('landing')">Home</li>
-                <li onclick="switchView('journey')">Journey</li>
-                <li onclick="switchView('dashboard')">Knowledge Base</li>
-                <li onclick="switchView('dashboard')">Quiz</li>
-                <li onclick="switchView('timeline')">Timeline</li>
-                <li onclick="switchView('voterid')">Voter ID</li>
+                <li class="active" onclick="switchView('landing')" data-i18n="navHome">Home</li>
+                <li onclick="switchView('journey')" data-i18n="navJourney">Journey</li>
+                <li onclick="switchView('dashboard')" data-i18n="navKB">Knowledge Base</li>
+                <li onclick="switchView('dashboard')" data-i18n="navQuiz">Quiz</li>
+                <li onclick="switchView('timeline')" data-i18n="navTimeline">Timeline</li>
+                <li onclick="switchView('voterid')" data-i18n="navVid">Voter ID</li>
                 <li onclick="alert('Feature coming soon!')">Resources</li>
                 <li onclick="alert('Feature coming soon!')">About</li>
             </ul>
             
             <div class="nav-actions">
+                <div class="lang-switcher">
+                    <select id="global-lang-select" class="nav-lang-sel">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
                 <button class="btn-icon theme-toggle"><i class="fa-regular fa-moon"></i></button>
                 <button class="btn-primary btn-sm" onclick="startJourney()">
-                    <i class="fa-solid fa-rocket"></i> Start Journey
+                    <i class="fa-solid fa-rocket"></i> <span data-i18n="navStart">Start Journey</span>
                 </button>
             </div>
         </div>
@@ -55,24 +63,24 @@
             <div class="hero-section">
                 <div class="hero-left">
                     <div class="badge-primary">
-                        <i class="fa-solid fa-star"></i> Interactive Learning
+                        <i class="fa-solid fa-star"></i> <span data-i18n="heroPre">Interactive Learning</span>
                     </div>
                     
                     <h1 class="hero-title">
-                        Explore. Learn.<br>
-                        <span class="text-primary">Understand Elections.</span>
+                        <span data-i18n="heroT1">Explore. Learn.</span><br>
+                        <span class="text-primary" data-i18n="heroT2">Understand Elections.</span>
                     </h1>
                     
-                    <p class="hero-desc">
+                    <p class="hero-desc" data-i18n="heroDesc">
                         A step-by-step interactive journey to help you understand how elections work, from registration to results.
                     </p>
                     
                     <div class="hero-buttons">
                         <button class="btn-primary btn-large" onclick="startJourney()">
-                            <i class="fa-solid fa-rocket"></i> Start Learning Journey <i class="fa-solid fa-arrow-right"></i>
+                            <i class="fa-solid fa-rocket"></i> <span data-i18n="btnStart">Start Learning Journey</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                         <button class="btn-outline btn-large" onclick="switchView('dashboard')">
-                            <i class="fa-regular fa-compass"></i> Explore Features
+                            <i class="fa-regular fa-compass"></i> <span data-i18n="btnExplore">Explore Features</span>
                         </button>
                     </div>
                     
@@ -155,7 +163,7 @@
                 <div class="feature-card" onclick="startJourney()">
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-signs-post text-blue"></i></div>
                     <div class="f-content">
-                        <h4>Journey</h4>
+                        <h4 data-i18n="navJourney">Journey</h4>
                         <p>Follow the complete election process step by step</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
@@ -164,7 +172,7 @@
                 <div class="feature-card" onclick="switchView('dashboard')">
                     <div class="f-icon bg-light-green"><i class="fa-solid fa-book-open text-green"></i></div>
                     <div class="f-content">
-                        <h4>Knowledge Base</h4>
+                        <h4 data-i18n="navKB">Knowledge Base</h4>
                         <p>Learn key concepts with interactive cards</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
@@ -173,7 +181,7 @@
                 <div class="feature-card" onclick="switchView('timeline')">
                     <div class="f-icon bg-light-red"><i class="fa-regular fa-clock text-red"></i></div>
                     <div class="f-content">
-                        <h4>Timeline</h4>
+                        <h4 data-i18n="navTimeline">Timeline</h4>
                         <p>See the election process as a timeline</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
@@ -182,7 +190,7 @@
                 <div class="feature-card" onclick="switchView('voterid')">
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-id-card-clip text-blue"></i></div>
                     <div class="f-content">
-                        <h4>Voter ID Card</h4>
+                        <h4 data-i18n="navVid">Voter ID Card</h4>
                         <p>Explore your digital Voter ID</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
@@ -191,7 +199,7 @@
                 <div class="feature-card" onclick="startQuizDirectly()">
                     <div class="f-icon bg-light-purple"><i class="fa-solid fa-trophy text-purple"></i></div>
                     <div class="f-content">
-                        <h4>Quiz</h4>
+                        <h4 data-i18n="navQuiz">Quiz</h4>
                         <p>Test your knowledge and earn a certificate</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
@@ -212,7 +220,7 @@
                 
                 <!-- Knowledge Base Preview Section -->
                 <div class="kb-preview-section">
-                    <h3 class="section-heading">Knowledge Base Preview</h3>
+                    <h3 class="section-heading" data-i18n="kbPreviewMsg">Knowledge Base Preview</h3>
                     <div class="kb-preview-cards">
                         
                         <div class="kb-card card-blue" onclick="switchView('dashboard')">
@@ -274,17 +282,17 @@
                 <div class="quote-section">
                     <div class="dark-quote-card">
                         <i class="fa-solid fa-quote-left quote-mark"></i>
-                        <p class="quote-text">
+                        <p class="quote-text" data-i18n="quote1">
                             Elections are not just about choosing leaders, but about choosing the future.
                         </p>
-                        <p class="quote-author">— Your Vote, Your Power</p>
+                        <p class="quote-author" data-i18n="footerText">— Your Vote, Your Power</p>
                     </div>
                 </div>
 
                 <!-- Progress Section -->
                 <div class="progress-section">
                     <div class="white-card progress-card text-center">
-                        <h4 class="card-title">Your Progress</h4>
+                        <h4 class="card-title" data-i18n="progTitle">Your Progress</h4>
                         
                         <div class="progress-circle-wrapper">
                             <svg viewBox="0 0 36 36" class="prog-chart">
@@ -301,8 +309,8 @@
                         <p class="text-sm text-muted mb-4">Start your learning journey to track your progress</p>
                         
                         <button class="btn-primary w-100" onclick="startJourney()">
-                            <i class="fa-solid fa-rocket"></i> Start Now
-                        </button>
+                            <i class="fa-solid fa-rocket"></i> <span data-i18n="progStart">Start Now</span>
+                        </button>>
                     </div>
                 </div>
 
@@ -349,7 +357,7 @@
         <section id="view-journey" class="view hidden">
             <!-- Back button added for convenience -->
             <button class="btn-outline mb-4" onclick="switchView('landing')">
-                <i class="fa-solid fa-arrow-left"></i> Back to Home
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <!-- Modern Stepper -->
             <div class="stepper-wrapper">
@@ -402,12 +410,12 @@
         <section id="view-dashboard" class="view hidden">
             
             <button class="btn-outline mb-4" onclick="switchView('landing')">
-                <i class="fa-solid fa-arrow-left"></i> Back to Home
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
 
             <!-- Knowledge Cards Section -->
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-solid fa-book-open text-primary"></i> Full Knowledge Base</h3>
+                <h3><i class="fa-solid fa-book-open text-primary"></i> <span data-i18n="navKB">Full Knowledge Base</span></h3>
                 <p>Expand cards to learn more</p>
             </div>
             
@@ -417,7 +425,7 @@
 
             <!-- Quiz Section -->
             <div class="section-title animate-slide-up mt-5" style="animation-delay: 0.3s" id="quiz-section-anchor">
-                <h3><i class="fa-solid fa-brain text-purple"></i> Test Your Knowledge</h3>
+                <h3><i class="fa-solid fa-brain text-purple"></i> <span data-i18n="quizTitle">Test Your Knowledge</span></h3>
             </div>
 
             <div class="quiz-container animate-slide-up" style="animation-delay: 0.4s">
@@ -425,9 +433,9 @@
                 <!-- Quiz Intro -->
                 <div id="quiz-intro" class="quiz-panel text-center">
                     <i class="fa-solid fa-clipboard-question quiz-icon-large"></i>
-                    <h3>Ready for a quick challenge?</h3>
+                    <h3 data-i18n="quizIntro">Ready for a quick challenge?</h3>
                     <p>Take this 5-question quiz to see what you've learned.</p>
-                    <button id="btn-start-quiz" class="btn-primary">Start Quiz</button>
+                    <button id="btn-start-quiz" class="btn-primary" data-i18n="quizStartBtn">Start Quiz</button>
                 </div>
 
                 <!-- Active Quiz -->
@@ -481,10 +489,10 @@
         <!-- View 4: Timeline -->
         <section id="view-timeline" class="view hidden">
             <button class="btn-outline mb-4" onclick="switchView('landing')">
-                <i class="fa-solid fa-arrow-left"></i> Back to Home
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-regular fa-clock text-red"></i> Election Process Timeline</h3>
+                <h3><i class="fa-regular fa-clock text-red"></i> <span data-i18n="timelineTitle">Election Process Timeline</span></h3>
                 <p>An overview of how events unfold</p>
             </div>
             
@@ -496,7 +504,7 @@
         <!-- View 5: Voter ID Card -->
         <section id="view-voterid" class="view hidden">
             <button class="btn-outline mb-4" onclick="switchView('landing')">
-                <i class="fa-solid fa-arrow-left"></i> Back to Home
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div id="voterid-root" class="animate-slide-up" style="animation-delay: 0.1s"></div>
         </section>

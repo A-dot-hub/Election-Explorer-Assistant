@@ -95,39 +95,39 @@ const electionData = {
 };
 
 const voterIdData = {
-    epicNo: "UZV4665527",
+    epicNo: "ABC1234567",
     name: {
-        en: "Rohan Madhav Jaiswar",
-        hi: "रोहन माधव जायसवाल",
-        mr: "रोहन माधव जैस्वार",
-        ta: "ரோஹன் மாதவ் ஜைஸ்வர்"
+        en: "Aarav Sharma",
+        hi: "आरव शर्मा",
+        mr: "आरव शर्मा",
+        ta: "ஆரவ் சர்மா"
     },
     fatherName: {
-        en: "Madhav Jaiswar",
-        hi: "माधव जायसवाल",
-        mr: "माधव जैस्वार",
-        ta: "மாதவ் ஜைஸ்வர்"
+        en: "Rajesh Sharma",
+        hi: "राजेश शर्मा",
+        mr: "राजेश शर्मा",
+        ta: "ராஜேஷ் சர்மா"
     },
     gender: { en: "Male", hi: "पुरुष", mr: "पुरुष", ta: "ஆண்" },
     dob: "26-08-1995",
-    serialNo: "1950",
+    serialNo: "1234",
     assembly: {
-        en: "176 - Vandre East",
-        hi: "176 - वांद्रे पूर्व",
-        mr: "176 - वांद्रे पूर्व",
-        ta: "176 - பாந்த்ரா கிழக்கு"
+        en: "123 - Sample Assembly",
+        hi: "123 - नमूना विधानसभा",
+        mr: "123 - नमुना विधानसभा",
+        ta: "123 - மாதிரி சட்டமன்றம்"
     },
     partNo: {
-        en: "1 - Matunga Railway Colony",
-        hi: "1 - माटुंगा रेलवे कॉलोनी",
-        mr: "1 - माटुंगा रेल्वे कॉलनी",
-        ta: "1 - மாதுங்கா ரயில்வே காலனி"
+        en: "1 - Sample Part",
+        hi: "1 - नमूना भाग",
+        mr: "1 - नमुना भाग",
+        ta: "1 - மாதிரி பகுதி"
     },
     pollingStation: {
-        en: "Matunga Railway Colony School, Matunga (East), Mumbai - 400019",
-        hi: "माटुंगा रेलवे कॉलोनी स्कूल, माटुंगा (पूर्व), मुंबई - 400019",
-        mr: "माटुंगा रेल्वे कॉलनी शाळा, माटुंगा (पूर्व), मुंबई - 400019",
-        ta: "மாதுங்கா ரயில்வே காலனி பள்ளி, மாதுங்கா (கிழக்கு), மும்பை - 400019"
+        en: "Sample Polling Station, City - 400000",
+        hi: "नमूना मतदान केंद्र, शहर - 400000",
+        mr: "नमुना मतदान केंद्र, शहर - 400000",
+        ta: "மாதிரி வாக்குச்சாவடி, நகரம் - 400000"
     },
     downloadDate: "28-12-2025"
 };
@@ -256,6 +256,117 @@ const i18n = {
         about2: "இது தேர்தலின் போது அடையாளம் மற்றும் குடியுரிமைக்கான சான்றாகப் பயன்படுத்தப்படுகிறது.",
         about3: "இந்தியாவில் பதிவுசெய்யப்பட்ட ஒவ்வொரு வாக்காளருக்கும் தனித்துவமான EPIC எண் வழங்கப்படுகிறது.",
         about4: "இந்தியாவில் சுதந்திரமான, நியாயமான மற்றும் வெளிப்படையான தேர்தல்களை உறுதி செய்ய உதவுகிறது."
+    }
+};
+
+const appTranslations = {
+    en: {
+        navHome: "Home",
+        navJourney: "Journey",
+        navKB: "Knowledge Base",
+        navQuiz: "Quiz",
+        navTimeline: "Timeline",
+        navVid: "Voter ID",
+        navStart: "Start Journey",
+        heroPre: "Interactive Learning",
+        heroT1: "Explore. Learn.",
+        heroT2: "Understand Elections.",
+        heroDesc: "A step-by-step interactive journey to help you understand how elections work, from registration to results.",
+        btnStart: "Start Learning Journey",
+        btnExplore: "Explore Features",
+        lblTheme: "Theme",
+        lblLang: "Language",
+        footerText: "Your Vote, Your Power",
+        journeyBack: "Back to Home",
+        kbPreviewMsg: "Knowledge Base Preview",
+        quote1: "Elections are not just about choosing leaders, but about choosing the future.",
+        progTitle: "Your Progress",
+        progStart: "Start Now",
+        quizTitle: "Test Your Knowledge",
+        quizIntro: "Ready for a quick challenge?",
+        quizStartBtn: "Start Quiz",
+        timelineTitle: "Election Process Timeline"
+    },
+    hi: {
+        navHome: "होम",
+        navJourney: "यात्रा",
+        navKB: "ज्ञानकोष",
+        navQuiz: "प्रश्नोत्तरी",
+        navTimeline: "टाइमलाइन",
+        navVid: "वोटर आईडी",
+        navStart: "यात्रा शुरू करें",
+        heroPre: "इंटरएक्टिव लर्निंग",
+        heroT1: "खोजें। सीखें।",
+        heroT2: "चुनावों को समझें।",
+        heroDesc: "पंजीकरण से लेकर परिणामों तक चुनाव कैसे काम करते हैं, यह समझने के लिए एक चरण-दर-चरण इंटरैक्टिव यात्रा।",
+        btnStart: "यात्रा शुरू करें",
+        btnExplore: "सुविधाएँ खोजें",
+        lblTheme: "थीम",
+        lblLang: "भाषा",
+        footerText: "आपका वोट, आपकी शक्ति",
+        journeyBack: "होम पर वापस जाएं",
+        kbPreviewMsg: "ज्ञानकोष पूर्वावलोकन",
+        quote1: "चुनाव केवल नेताओं को चुनने के बारे में नहीं हैं, बल्कि भविष्य को चुनने के बारे में हैं।",
+        progTitle: "आपकी प्रगति",
+        progStart: "अभी शुरू करें",
+        quizTitle: "अपने ज्ञान का परीक्षण करें",
+        quizIntro: "क्या आप चुनौती के लिए तैयार हैं?",
+        quizStartBtn: "प्रश्नोत्तरी शुरू करें",
+        timelineTitle: "चुनाव प्रक्रिया टाइमलाइन"
+    },
+    mr: {
+        navHome: "मुख्यपृष्ठ",
+        navJourney: "प्रवास",
+        navKB: "ज्ञानकोष",
+        navQuiz: "मंजुषा",
+        navTimeline: "टाइमलाइन",
+        navVid: "मतदार ओळखपत्र",
+        navStart: "प्रवास सुरू करा",
+        heroPre: "परस्परसंवादी शिक्षण",
+        heroT1: "शोधा. शिका.",
+        heroT2: "निवडणुका समजून घ्या.",
+        heroDesc: "नोंदणीपासून ते निकालापर्यंत निवडणुका कशा चालतात हे समजून घेण्यासाठी एक टप्प्याटप्प्याने परस्परसंवादी प्रवास.",
+        btnStart: "प्रवास सुरू करा",
+        btnExplore: "वैशिष्ट्ये शोधा",
+        lblTheme: "थीम",
+        lblLang: "भाषा",
+        footerText: "तुमचे मत, तुमची शक्ती",
+        journeyBack: "मुख्यपृष्ठावर परत जा",
+        kbPreviewMsg: "ज्ञानकोष पूर्वावलोकन",
+        quote1: "निवडणुका म्हणजे केवळ नेते निवडणे नव्हे, तर भविष्य निवडणे.",
+        progTitle: "तुमची प्रगती",
+        progStart: "आता सुरू करा",
+        quizTitle: "तुमच्या ज्ञानाची चाचणी घ्या",
+        quizIntro: "तुम्ही आव्हानासाठी तयार आहात का?",
+        quizStartBtn: "मंजुषा सुरू करा",
+        timelineTitle: "निवडणूक प्रक्रिया टाइमलाइन"
+    },
+    ta: {
+        navHome: "முகப்பு",
+        navJourney: "பயணம்",
+        navKB: "அறிவு தளம்",
+        navQuiz: "வினாடி வினா",
+        navTimeline: "காலவரிசை",
+        navVid: "வாக்காளர் அட்டை",
+        navStart: "பயணத்தை தொடங்கு",
+        heroPre: "ஊடாடும் கற்றல்",
+        heroT1: "ஆராயுங்கள். கற்றுக்கொள்ளுங்கள்.",
+        heroT2: "தேர்தலை புரிந்து கொள்ள.",
+        heroDesc: "பதிவு முதல் முடிவுகள் வரை தேர்தல் எவ்வாறு செயல்படுகிறது என்பதைப் புரிந்துகொள்ள ஒரு படிப்படியான ஊடாடும் பயணம்.",
+        btnStart: "கற்றலை தொடங்கு",
+        btnExplore: "அம்சங்களை ஆராயுங்கள்",
+        lblTheme: "தீம்",
+        lblLang: "மொழி",
+        footerText: "உங்கள் வாக்கு, உங்கள் சக்தி",
+        journeyBack: "முகப்புக்கு திரும்பு",
+        kbPreviewMsg: "அறிவு தளம் முன்னோட்டம்",
+        quote1: "தேர்தல்கள் தலைவர்களைத் தேர்ந்தெடுப்பது மட்டுமல்ல, எதிர்காலத்தைத் தேர்ந்தெடுப்பது பற்றியது.",
+        progTitle: "உங்கள் முன்னேற்றம்",
+        progStart: "இப்போதே தொடங்கு",
+        quizTitle: "உங்கள் அறிவை சோதிக்கவும்",
+        quizIntro: "ஒரு சவாலுக்கு தயாரா?",
+        quizStartBtn: "வினாடி வினாவை தொடங்கு",
+        timelineTitle: "தேர்தல் செயல்முறை காலவரிசை"
     }
 };
 
