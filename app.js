@@ -62,6 +62,8 @@ const uiScoreCirclePath = document.getElementById('score-circle-path');
 const uiFinalMessage = document.getElementById('quiz-final-message');
 const btnRetryQuiz = document.getElementById('btn-retry-quiz');
 
+const btnThemeToggle = document.querySelector('.theme-toggle');
+
 // Landing progress
 const landingProgressText = document.getElementById('landing-progress-text');
 const landingProgressCircle = document.getElementById('landing-progress-circle');
@@ -90,6 +92,14 @@ function bindEvents() {
     btnStartQuiz.addEventListener('click', startQuiz);
     btnNextQuestion.addEventListener('click', handleNextQuestion);
     btnRetryQuiz.addEventListener('click', startQuiz);
+    
+    if (btnThemeToggle) {
+        btnThemeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            btnThemeToggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+        });
+    }
 }
 
 // --- View Router ---
@@ -107,11 +117,12 @@ function switchView(viewName) {
     views[viewName].classList.remove('hidden');
     views[viewName].classList.add('active');
     
-    // Update nav active state
     document.querySelectorAll('.nav-links li').forEach(li => {
         li.classList.remove('active');
-        if(li.innerText.toLowerCase() === viewName || 
-          (viewName === 'dashboard' && li.innerText === 'Knowledge Base')) {
+        const text = li.innerText.toLowerCase();
+        if(text === viewName || 
+          (viewName === 'landing' && text === 'home') ||
+          (viewName === 'dashboard' && text === 'knowledge base')) {
             li.classList.add('active');
         }
     });
