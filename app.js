@@ -84,7 +84,7 @@ function init() {
     buildChecklist();
     updateLandingProgress();
     updateAppLanguage();
-    
+
     // Check initial hash for routing
     if (window.location.hash) {
         const targetView = window.location.hash.substring(1);
@@ -95,7 +95,7 @@ function init() {
 function updateAppLanguage() {
     const tl = appTranslations[currentLang];
     if (!tl) return;
-    
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (tl[key]) {
@@ -122,8 +122,8 @@ function setupChatbot() {
 
     const handleSend = () => {
         const text = input.value.trim().toLowerCase();
-        if(!text) return;
-        
+        if (!text) return;
+
         // Add user msg
         const uMsg = document.createElement('div');
         uMsg.className = 'chat-message user-msg';
@@ -146,25 +146,25 @@ function setupChatbot() {
             body.appendChild(bMsg);
             body.scrollTop = body.scrollHeight;
         }, 600);
-        
+
         body.scrollTop = body.scrollHeight;
     };
 
     sendBtn.addEventListener('click', handleSend);
-    input.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSend(); });
+    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
 }
 
 function startJourneyOnboarding() {
     const modal = document.getElementById('onboarding-modal');
     modal.classList.remove('hidden');
-    
+
     document.getElementById('btn-start-personalized').onclick = () => {
         modal.classList.add('hidden');
         const isFirst = document.getElementById('onboarding-firsttime').value;
         const isReg = document.getElementById('onboarding-registered').value;
-        
+
         _originalStartJourney();
-        
+
         if (isReg === 'no') {
             setTimeout(() => alert("Since you are not registered, pay close attention to Step 1!"), 500);
         }
@@ -172,7 +172,7 @@ function startJourneyOnboarding() {
 }
 
 // Intercept window.startJourney
-const _originalStartJourney = window.startJourney || function() {
+const _originalStartJourney = window.startJourney || function () {
     switchView('journey');
     currentStep = 0;
     updateStepUI();
@@ -181,10 +181,10 @@ window.startJourney = startJourneyOnboarding;
 
 function buildChecklist() {
     const container = document.getElementById('checklist-container');
-    if(!container) return;
+    if (!container) return;
     container.innerHTML = '';
-    
-    if(!electionData.documentsChecklist) return;
+
+    if (!electionData.documentsChecklist) return;
 
     electionData.documentsChecklist.forEach(doc => {
         const item = document.createElement('div');
@@ -205,10 +205,10 @@ function buildChecklist() {
         const boxes = Array.from(container.querySelectorAll('.checklist-checkbox'));
         const allChecked = boxes.length > 0 && boxes.every(c => c.checked);
         status.style.display = allChecked ? 'block' : 'none';
-        
+
         boxes.forEach(b => {
-             if(b.checked) b.closest('.checklist-item').classList.add('done');
-             else b.closest('.checklist-item').classList.remove('done');
+            if (b.checked) b.closest('.checklist-item').classList.add('done');
+            else b.closest('.checklist-item').classList.remove('done');
         });
     });
 }
@@ -217,11 +217,11 @@ function bindEvents() {
     btnPrev.addEventListener('click', prevStep);
     btnNext.addEventListener('click', nextStep);
     btnLearnMore.addEventListener('click', toggleLearnMore);
-    
+
     btnStartQuiz.addEventListener('click', startQuiz);
     btnNextQuestion.addEventListener('click', handleNextQuestion);
     btnRetryQuiz.addEventListener('click', startQuiz);
-    
+
     const globalLangSel = document.getElementById('global-lang-select');
     if (globalLangSel) {
         globalLangSel.addEventListener('change', (e) => {
@@ -236,7 +236,7 @@ function bindEvents() {
             buildTimeline(e.target.value);
         });
     }
-    
+
     if (btnThemeToggle) {
         // Init theme
         const savedTheme = localStorage.getItem('theme');
@@ -244,7 +244,7 @@ function bindEvents() {
             document.body.classList.add('dark');
             btnThemeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
         }
-        
+
         btnThemeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             const isDark = document.body.classList.contains('dark');
@@ -260,23 +260,23 @@ function bindEvents() {
 
 function switchView(viewName) {
     state.view = viewName;
-    
+
     // Hide all
     Object.values(views).forEach(v => {
         v.classList.add('hidden');
         v.classList.remove('active');
     });
-    
+
     // Show target
     views[viewName].classList.remove('hidden');
     views[viewName].classList.add('active');
-    
+
     document.querySelectorAll('.nav-links li').forEach(li => {
         li.classList.remove('active');
         const text = li.innerText.toLowerCase();
-        if(text === viewName || 
-          (viewName === 'landing' && text === 'home') ||
-          (viewName === 'dashboard' && text === 'knowledge base')) {
+        if (text === viewName ||
+            (viewName === 'landing' && text === 'home') ||
+            (viewName === 'dashboard' && text === 'knowledge base')) {
             li.classList.add('active');
         }
     });
@@ -284,7 +284,7 @@ function switchView(viewName) {
     if (viewName === 'landing') {
         updateLandingProgress();
     }
-    
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -294,9 +294,9 @@ function updateLandingProgress() {
     // Calculate progress based on current step
     let progressPercentage = 0;
     if (state.currentStep > 0) {
-         progressPercentage = Math.round((state.currentStep / (state.totalSteps - 1)) * 100);
+        progressPercentage = Math.round((state.currentStep / (state.totalSteps - 1)) * 100);
     }
-    
+
     if (landingProgressText) landingProgressText.innerText = `${progressPercentage}%`;
     if (landingProgressCircle) {
         setTimeout(() => {
@@ -310,7 +310,7 @@ function updateLandingProgress() {
 
 function startQuizDirectly() {
     switchView('dashboard');
-    document.getElementById('quiz-section-anchor').scrollIntoView({behavior: 'smooth'});
+    document.getElementById('quiz-section-anchor').scrollIntoView({ behavior: 'smooth' });
 }
 
 // --- Journey Flow Logic ---
@@ -327,11 +327,11 @@ function buildStepper() {
         const node = document.createElement('div');
         node.className = 'step-node';
         node.innerText = i + 1;
-        
+
         node.addEventListener('click', () => {
             if (i <= state.currentStep) goToStep(i);
         });
-        
+
         stepperNodesContainer.appendChild(node);
     }
 }
@@ -339,10 +339,10 @@ function buildStepper() {
 function updateStepperUI() {
     const progress = (state.currentStep / (state.totalSteps - 1)) * 100;
     stepperProgress.style.width = `${progress}%`;
-    
+
     const nodes = stepperNodesContainer.children;
     for (let i = 0; i < nodes.length; i++) {
-        nodes[i].className = 'step-node'; 
+        nodes[i].className = 'step-node';
         if (i < state.currentStep) {
             nodes[i].classList.add('completed');
             nodes[i].innerHTML = '<i class="fa-solid fa-check"></i>';
@@ -357,31 +357,31 @@ function updateStepperUI() {
 
 function updateJourneyUI() {
     const data = electionData.steps[state.currentStep];
-    
+
     stepCardWrapper.style.opacity = '0';
     stepCardWrapper.style.transform = 'translateY(10px)';
-    
+
     setTimeout(() => {
         learnMoreBox.classList.remove('expanded');
-        
+
         uiStepIcon.innerHTML = `<i class="${data.icon}"></i>`;
         uiStepNumber.innerText = `Step ${state.currentStep + 1} of ${state.totalSteps}`;
         uiStepTitle.innerText = data.title;
         uiStepExp.innerText = data.explanation;
         uiStepDetails.innerText = data.learnMore;
-        
+
         btnPrev.disabled = state.currentStep === 0;
-        
+
         if (state.currentStep === state.totalSteps - 1) {
             btnNext.innerHTML = 'Finish Journey <i class="fa-solid fa-flag-checkered"></i>';
-            btnNext.style.background = 'var(--green)'; 
+            btnNext.style.background = 'var(--green)';
         } else {
             btnNext.innerHTML = 'Next Step <i class="fa-solid fa-arrow-right"></i>';
-            btnNext.style.background = ''; 
+            btnNext.style.background = '';
         }
-        
+
         updateStepperUI();
-        
+
         stepCardWrapper.style.opacity = '1';
         stepCardWrapper.style.transform = 'translateY(0)';
     }, 200);
@@ -425,7 +425,7 @@ function buildKnowledgeCards() {
         const el = document.createElement('div');
         el.className = 'k-card-dash';
         el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
-        
+
         el.innerHTML = `
             <div class="k-header">
                 <div class="k-title-group">
@@ -438,21 +438,21 @@ function buildKnowledgeCards() {
                 <p>${card.content}</p>
             </div>
         `;
-        
+
         el.addEventListener('click', () => {
             const isCurrentlyExpanded = el.classList.contains('expanded');
-            
+
             // Close all
             document.querySelectorAll('.k-card-dash').forEach(cardEl => {
                 cardEl.classList.remove('expanded');
             });
-            
+
             // Open this one if it wasn't already expanded
             if (!isCurrentlyExpanded) {
                 el.classList.add('expanded');
             }
         });
-        
+
         knowledgeGrid.appendChild(el);
     });
 }
@@ -463,31 +463,31 @@ function startQuiz() {
     state.quiz.active = true;
     state.quiz.currentQuestion = 0;
     state.quiz.score = 0;
-    
+
     quizIntro.classList.add('hidden');
     quizResults.classList.add('hidden');
     quizActive.classList.remove('hidden');
-    
+
     loadQuestion();
 }
 
 function loadQuestion() {
     const qData = electionData.quiz[state.quiz.currentQuestion];
-    
+
     uiQFeedback.classList.add('hidden');
-    uiQFeedback.className = 'q-feedback hidden'; 
+    uiQFeedback.className = 'q-feedback hidden';
     btnNextQuestion.classList.add('hidden');
     uiQOptions.innerHTML = '';
-    
+
     uiQProgress.innerText = `Question ${state.quiz.currentQuestion + 1}/${state.quiz.total}`;
     uiQScore.innerText = state.quiz.score;
     uiQText.innerText = qData.question;
-    
+
     qData.options.forEach((optText, index) => {
         const btn = document.createElement('button');
         btn.className = 'opt-btn';
         btn.innerHTML = `<span>${optText}</span> <i class="fa-solid fa-circle opt-icon" style="color: var(--border)"></i>`;
-        
+
         btn.addEventListener('click', () => submitAnswer(index, btn));
         uiQOptions.appendChild(btn);
     });
@@ -496,33 +496,33 @@ function loadQuestion() {
 function submitAnswer(selectedIndex, selectedBtn) {
     const qData = electionData.quiz[state.quiz.currentQuestion];
     const isCorrect = selectedIndex === qData.answer;
-    
+
     const options = uiQOptions.querySelectorAll('.opt-btn');
     options.forEach(btn => btn.disabled = true);
-    
+
     uiQFeedback.classList.remove('hidden');
-    
+
     if (isCorrect) {
         state.quiz.score++;
         uiQScore.innerText = state.quiz.score;
-        
+
         selectedBtn.classList.add('correct');
         selectedBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-check opt-icon';
-        
+
         uiQFeedback.classList.add('success');
         uiQFeedback.innerHTML = `<i class="fa-solid fa-check-circle"></i> <span class="text">Correct! Well done.</span>`;
     } else {
         selectedBtn.classList.add('wrong');
         selectedBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-xmark opt-icon';
-        
+
         const correctBtn = options[qData.answer];
         correctBtn.classList.add('correct');
         correctBtn.querySelector('.opt-icon').className = 'fa-solid fa-circle-check opt-icon';
-        
+
         uiQFeedback.classList.add('error');
         uiQFeedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span class="text">Incorrect. The right answer is highlighted.</span>`;
     }
-    
+
     btnNextQuestion.classList.remove('hidden');
     if (state.quiz.currentQuestion === state.quiz.total - 1) {
         btnNextQuestion.innerHTML = 'See Results <i class="fa-solid fa-flag-checkered"></i>';
@@ -543,22 +543,22 @@ function handleNextQuestion() {
 function showQuizResults() {
     quizActive.classList.add('hidden');
     quizResults.classList.remove('hidden');
-    
+
     const score = state.quiz.score;
     const total = state.quiz.total;
     const percentage = (score / total) * 100;
-    
+
     uiFinalScoreText.innerText = `${score}/${total}`;
-    
+
     setTimeout(() => {
         let strokeColor = 'var(--error)';
-        if(percentage >= 80) strokeColor = 'var(--success)';
-        else if(percentage >= 50) strokeColor = '#F59E0B'; 
-        
+        if (percentage >= 80) strokeColor = 'var(--success)';
+        else if (percentage >= 50) strokeColor = '#F59E0B';
+
         uiScoreCirclePath.style.stroke = strokeColor;
         uiScoreCirclePath.setAttribute('stroke-dasharray', `${percentage}, 100`);
     }, 100);
-    
+
     if (score === total) {
         uiFinalMessage.innerText = "Perfect score! You are a true democratic scholar.";
     } else if (score >= total / 2) {
@@ -572,19 +572,19 @@ function showQuizResults() {
 function buildTimeline(region = "General") {
     const timelineContainer = document.getElementById('timeline-container');
     if (!timelineContainer) return;
-    
+
     timelineContainer.innerHTML = '';
-    
+
     // Determine data source
     const isState = region !== "General";
-    const dataList = isState && electionData.stateTimelines[region] 
-        ? electionData.stateTimelines[region] 
+    const dataList = isState && electionData.stateTimelines[region]
+        ? electionData.stateTimelines[region]
         : electionData.steps;
 
     dataList.forEach((itemData, index) => {
         const item = document.createElement('div');
         item.className = 'timeline-item';
-        
+
         if (isState) {
             item.innerHTML = `
                 <div class="timeline-marker bg-light-red">
@@ -608,7 +608,7 @@ function buildTimeline(region = "General") {
                 </div>
             `;
         }
-        
+
         timelineContainer.appendChild(item);
     });
 }
@@ -619,7 +619,7 @@ function buildVoterIdUI() {
     if (!root) return;
     const tl = i18n[currentLang];
     const data = voterIdData;
-    
+
     // Helper to get translated field or fallback to English
     const getVal = (field) => {
         if (typeof field === 'object') return field[currentLang] || field['en'];
@@ -647,7 +647,7 @@ function buildVoterIdUI() {
                         <h3>${tl.eciLocal}</h3>
                         <h4>${tl.eci}</h4>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Election_Commission_of_India_Logo_2.png" alt="ECI Logo" class="vid-eci-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/ECI_Logo.svg" alt="ECI Logo" class="vid-eci-logo">
                 </div>
                 <div class="vid-f-content">
                     <div class="vid-epic-hero">${data.epicNo}</div>
