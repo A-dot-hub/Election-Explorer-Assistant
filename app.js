@@ -79,8 +79,9 @@ function init() {
     bindEvents();
     buildStepper();
     buildKnowledgeCards();
-    buildTimeline();
+    buildTimeline("General");
     buildVoterIdUI();
+    buildChecklist();
     updateLandingProgress();
     updateAppLanguage();
     
@@ -106,6 +107,112 @@ function updateAppLanguage() {
     buildVoterIdUI();
 }
 
+function setupChatbot() {
+    const fab = document.getElementById('chatbot-fab');
+    const widget = document.getElementById('chatbot-widget');
+    const toggle = document.getElementById('chatbot-toggle');
+    const sendBtn = document.getElementById('chat-send');
+    const input = document.getElementById('chat-input');
+    const body = document.getElementById('chatbot-body');
+
+    if (!fab) return;
+
+    fab.addEventListener('click', () => { widget.classList.add('active'); fab.style.display = 'none'; });
+    toggle.addEventListener('click', () => { widget.classList.remove('active'); fab.style.display = 'flex'; });
+
+    const handleSend = () => {
+        const text = input.value.trim().toLowerCase();
+        if(!text) return;
+        
+        // Add user msg
+        const uMsg = document.createElement('div');
+        uMsg.className = 'chat-message user-msg';
+        uMsg.innerText = input.value;
+        body.appendChild(uMsg);
+        input.value = '';
+
+        // Bot response
+        setTimeout(() => {
+            let reply = "I'm not sure about that. Try asking about your polling booth, required documents, or EVMs.";
+            for (let item of electionData.chatResponses) {
+                if (item.keywords.some(kw => text.includes(kw))) {
+                    reply = item.response;
+                    break;
+                }
+            }
+            const bMsg = document.createElement('div');
+            bMsg.className = 'chat-message bot-msg';
+            bMsg.innerText = reply;
+            body.appendChild(bMsg);
+            body.scrollTop = body.scrollHeight;
+        }, 600);
+        
+        body.scrollTop = body.scrollHeight;
+    };
+
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSend(); });
+}
+
+function startJourneyOnboarding() {
+    const modal = document.getElementById('onboarding-modal');
+    modal.classList.remove('hidden');
+    
+    document.getElementById('btn-start-personalized').onclick = () => {
+        modal.classList.add('hidden');
+        const isFirst = document.getElementById('onboarding-firsttime').value;
+        const isReg = document.getElementById('onboarding-registered').value;
+        
+        _originalStartJourney();
+        
+        if (isReg === 'no') {
+            setTimeout(() => alert("Since you are not registered, pay close attention to Step 1!"), 500);
+        }
+    };
+}
+
+// Intercept window.startJourney
+const _originalStartJourney = window.startJourney || function() {
+    switchView('journey');
+    currentStep = 0;
+    updateStepUI();
+};
+window.startJourney = startJourneyOnboarding;
+
+function buildChecklist() {
+    const container = document.getElementById('checklist-container');
+    if(!container) return;
+    container.innerHTML = '';
+    
+    if(!electionData.documentsChecklist) return;
+
+    electionData.documentsChecklist.forEach(doc => {
+        const item = document.createElement('div');
+        item.className = 'checklist-item';
+        item.innerHTML = `
+            <input type="checkbox" id="${doc.id}" class="checklist-checkbox">
+            <label for="${doc.id}" class="checklist-label">${doc.label}</label>
+        `;
+        container.appendChild(item);
+    });
+
+    const status = document.createElement('div');
+    status.className = 'checklist-status';
+    status.innerText = "You have all the documents ready! You can now register.";
+    container.appendChild(status);
+
+    container.addEventListener('change', () => {
+        const boxes = Array.from(container.querySelectorAll('.checklist-checkbox'));
+        const allChecked = boxes.length > 0 && boxes.every(c => c.checked);
+        status.style.display = allChecked ? 'block' : 'none';
+        
+        boxes.forEach(b => {
+             if(b.checked) b.closest('.checklist-item').classList.add('done');
+             else b.closest('.checklist-item').classList.remove('done');
+        });
+    });
+}
+
 function bindEvents() {
     btnPrev.addEventListener('click', prevStep);
     btnNext.addEventListener('click', nextStep);
@@ -120,6 +227,13 @@ function bindEvents() {
         globalLangSel.addEventListener('change', (e) => {
             currentLang = e.target.value;
             updateAppLanguage();
+        });
+    }
+
+    const stateTimelineSel = document.getElementById('state-timeline-select');
+    if (stateTimelineSel) {
+        stateTimelineSel.addEventListener('change', (e) => {
+            buildTimeline(e.target.value);
         });
     }
     
@@ -138,6 +252,8 @@ function bindEvents() {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
+
+    setupChatbot();
 }
 
 // --- View Router ---
@@ -453,26 +569,45 @@ function showQuizResults() {
 }
 
 // --- Timeline Logic ---
-function buildTimeline() {
+function buildTimeline(region = "General") {
     const timelineContainer = document.getElementById('timeline-container');
     if (!timelineContainer) return;
     
     timelineContainer.innerHTML = '';
     
-    electionData.steps.forEach((step, index) => {
+    // Determine data source
+    const isState = region !== "General";
+    const dataList = isState && electionData.stateTimelines[region] 
+        ? electionData.stateTimelines[region] 
+        : electionData.steps;
+
+    dataList.forEach((itemData, index) => {
         const item = document.createElement('div');
         item.className = 'timeline-item';
         
-        item.innerHTML = `
-            <div class="timeline-marker bg-light-blue">
-                <i class="${step.icon} text-blue"></i>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-step">Step ${index + 1}</div>
-                <h3>${step.title}</h3>
-                <p>${step.explanation}</p>
-            </div>
-        `;
+        if (isState) {
+            item.innerHTML = `
+                <div class="timeline-marker bg-light-red">
+                    <i class="fa-regular fa-calendar-check text-red"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-step">${itemData.date}</div>
+                    <h3>${itemData.event}</h3>
+                    <p>Expected date for ${itemData.event} in ${region}.</p>
+                </div>
+            `;
+        } else {
+            item.innerHTML = `
+                <div class="timeline-marker bg-light-blue">
+                    <i class="${itemData.icon || 'fa-solid fa-circle'} text-blue"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-step">Step ${index + 1}</div>
+                    <h3>${itemData.title}</h3>
+                    <p>${itemData.explanation}</p>
+                </div>
+            `;
+        }
         
         timelineContainer.appendChild(item);
     });

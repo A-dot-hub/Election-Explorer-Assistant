@@ -32,6 +32,7 @@
                 <li onclick="switchView('dashboard')" data-i18n="navQuiz">Quiz</li>
                 <li onclick="switchView('timeline')" data-i18n="navTimeline">Timeline</li>
                 <li onclick="switchView('voterid')" data-i18n="navVid">Voter ID</li>
+                <li onclick="switchView('tools')" data-i18n="navTools">Tools</li>
                 <li onclick="alert('Feature coming soon!')">Resources</li>
                 <li onclick="alert('Feature coming soon!')">About</li>
             </ul>
@@ -494,6 +495,15 @@
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
                 <h3><i class="fa-regular fa-clock text-red"></i> <span data-i18n="timelineTitle">Election Process Timeline</span></h3>
                 <p>An overview of how events unfold</p>
+                <div style="margin-top:20px;">
+                    <label for="state-timeline-select"><strong>Select Region:</strong></label>
+                    <select id="state-timeline-select" class="nav-lang-sel" style="margin-left:10px;">
+                        <option value="General">General Timeline</option>
+                        <option value="Maharashtra">Maharashtra (Upcoming)</option>
+                        <option value="Delhi">Delhi (Upcoming)</option>
+                        <option value="Karnataka">Karnataka (Past)</option>
+                    </select>
+                </div>
             </div>
             
             <div id="timeline-container" class="timeline-container animate-slide-up" style="animation-delay: 0.2s">
@@ -509,9 +519,61 @@
             <div id="voterid-root" class="animate-slide-up" style="animation-delay: 0.1s"></div>
         </section>
 
+        <!-- View 6: Tools & Utilities (Checklist etc) -->
+        <section id="view-tools" class="view hidden">
+            <button class="btn-outline mb-4" onclick="switchView('landing')">
+                <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
+            </button>
+            <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
+                <h3><i class="fa-solid fa-clipboard-list text-primary"></i> Document Checklist</h3>
+                <p>Ensure you have these before registering</p>
+            </div>
+            <div class="checklist-container card-white animate-slide-up" style="animation-delay: 0.2s" id="checklist-container">
+            </div>
+        </section>
+
     </main>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="chatbot-widget">
+        <div class="chatbot-header" id="chatbot-header">
+            <div><i class="fa-solid fa-robot"></i> Election Assistant</div>
+            <i class="fa-solid fa-chevron-down" id="chatbot-toggle"></i>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chat-message bot-msg">Hi! I am your Election Assistant. Ask me anything like "Where is my polling booth?" or "What age is required to vote?"</div>
+            <!-- Chat history here -->
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="chat-input" placeholder="Type your question...">
+            <button id="chat-send" class="btn-primary" style="padding: 0.5rem 1rem;"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chatbot-fab" class="chatbot-fab"><i class="fa-solid fa-comment-dots"></i></button>
 
     <script src="data.js"></script>
     <script src="app.js"></script>
+
+    <!-- Onboarding Modal -->
+    <div id="onboarding-modal" class="modal-overlay hidden">
+        <div class="modal-content text-center">
+            <h3><i class="fa-solid fa-clipboard-user text-primary" style="font-size:2rem; margin-bottom:1rem;"></i><br>Personalize Your Journey</h3>
+            <p>Tell us a bit about yourself so we can guide you better.</p>
+            <div style="margin-bottom: 1.5rem; text-align:left;">
+                <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Are you a first-time voter?</label>
+                <select id="onboarding-firsttime" class="nav-lang-sel" style="width:100%;">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                
+                <label style="display:block; margin-top:1rem; margin-bottom:0.5rem; font-weight:600;">Have you registered to vote?</label>
+                <select id="onboarding-registered" class="nav-lang-sel" style="width:100%;">
+                    <option value="no">No, I need to register</option>
+                    <option value="yes">Yes, I am registered</option>
+                </select>
+            </div>
+            <button class="btn-primary w-100" id="btn-start-personalized">Start My Journey</button>
+        </div>
+    </div>
 </body>
 </html>

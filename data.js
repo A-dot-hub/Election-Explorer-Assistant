@@ -47,7 +47,7 @@ const electionData = {
         {
             icon: "fa-solid fa-vote-yea",
             title: "What is Voting?",
-            content: "Voting is a formal method by which a group makes a decision or expresses an opinion. It is the core mechanism of democratic governance, allowing people to choose their representatives."
+            content: "Voting is a formal method by which a group makes a decision or expresses an opinion. It is the core mechanism of democratic governance, allowing people to choose geometric representatives."
         },
         {
             icon: "fa-solid fa-microchip",
@@ -91,6 +91,43 @@ const electionData = {
             options: ["Bandage", "Indelible Ink", "A Stamp", "Clear Tape"],
             answer: 1
         }
+    ],
+    stateTimelines: {
+        "Maharashtra": [
+            { date: "Oct 15, 2024", event: "Date of Notification" },
+            { date: "Oct 22, 2024", event: "Last Date of Making Nominations" },
+            { date: "Oct 23, 2024", event: "Scrutiny of Nominations" },
+            { date: "Oct 25, 2024", event: "Last Date of Withdrawal" },
+            { date: "Nov 20, 2024", event: "Date of Poll" },
+            { date: "Nov 23, 2024", event: "Date of Counting" }
+        ],
+        "Delhi": [
+            { date: "Jan 05, 2025", event: "Date of Notification" },
+            { date: "Jan 12, 2025", event: "Last Date of Making Nominations" },
+            { date: "Jan 13, 2025", event: "Scrutiny of Nominations" },
+            { date: "Jan 15, 2025", event: "Last Date of Withdrawal" },
+            { date: "Feb 08, 2025", event: "Date of Poll" },
+            { date: "Feb 11, 2025", event: "Date of Counting" }
+        ],
+        "Karnataka": [
+            { date: "Apr 13, 2023", event: "Date of Notification" },
+            { date: "Apr 20, 2023", event: "Last Date of Making Nominations" },
+            { date: "Apr 21, 2023", event: "Scrutiny of Nominations" },
+            { date: "Apr 24, 2023", event: "Last Date of Withdrawal" },
+            { date: "May 10, 2023", event: "Date of Poll" },
+            { date: "May 13, 2023", event: "Date of Counting" }
+        ]
+    },
+    chatResponses: [
+        { keywords: ["where", "polling booth", "station"], response: "You can find your polling booth by visiting the NVSP portal and searching your name in the electoral roll, or by using the Voter Helpline App." },
+        { keywords: ["documents", "register", "proof"], response: "To register, you need: 1. Address Proof (Aadhar, Utility Bill). 2. Age Proof (Birth Certificate, Pan Card). 3. A Passport-sized Photo." },
+        { keywords: ["evm", "machine", "how to vote"], response: "An EVM (Electronic Voting Machine) has buttons next to candidate names and symbols. You press the blue button next to your choice, and a beep confirms your vote." },
+        { keywords: ["age", "18", "can i vote"], response: "You must be 18 years old on January 1st of the election year to be eligible to vote." }
+    ],
+    documentsChecklist: [
+        { id: "doc1", label: "Aadhar Card or Passport (Identity & Address Proof)" },
+        { id: "doc2", label: "PAN Card or Birth Certificate (Age Proof)" },
+        { id: "doc3", label: "Recent Passport Size Photograph" }
     ]
 };
 
@@ -267,6 +304,7 @@ const appTranslations = {
         navQuiz: "Quiz",
         navTimeline: "Timeline",
         navVid: "Voter ID",
+        navTools: "Tools",
         navStart: "Start Journey",
         heroPre: "Interactive Learning",
         heroT1: "Explore. Learn.",
@@ -294,6 +332,7 @@ const appTranslations = {
         navQuiz: "प्रश्नोत्तरी",
         navTimeline: "टाइमलाइन",
         navVid: "वोटर आईडी",
+        navTools: "उपकरण",
         navStart: "यात्रा शुरू करें",
         heroPre: "इंटरएक्टिव लर्निंग",
         heroT1: "खोजें। सीखें।",
@@ -321,6 +360,7 @@ const appTranslations = {
         navQuiz: "मंजुषा",
         navTimeline: "टाइमलाइन",
         navVid: "मतदार ओळखपत्र",
+        navTools: "साधने",
         navStart: "प्रवास सुरू करा",
         heroPre: "परस्परसंवादी शिक्षण",
         heroT1: "शोधा. शिका.",
@@ -348,6 +388,7 @@ const appTranslations = {
         navQuiz: "வினாடி வினா",
         navTimeline: "காலவரிசை",
         navVid: "வாக்காளர் அட்டை",
+        navTools: "கருவிகள்",
         navStart: "பயணத்தை தொடங்கு",
         heroPre: "ஊடாடும் கற்றல்",
         heroT1: "ஆராயுங்கள். கற்றுக்கொள்ளுங்கள்.",
