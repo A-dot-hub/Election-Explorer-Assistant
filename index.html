@@ -90,28 +90,28 @@
                             <i class="fa-solid fa-layer-group text-primary"></i>
                             <div class="stat-text">
                                 <strong>7</strong>
-                                <span>Core Steps</span>
+                                <span data-i18n="stat1">Core Steps</span>
                             </div>
                         </div>
                         <div class="stat-item">
                             <i class="fa-solid fa-book text-green"></i>
                             <div class="stat-text">
                                 <strong>4</strong>
-                                <span>Knowledge Cards</span>
+                                <span data-i18n="stat2">Knowledge Cards</span>
                             </div>
                         </div>
                         <div class="stat-item">
                             <i class="fa-regular fa-circle-question text-purple"></i>
                             <div class="stat-text">
                                 <strong>10+</strong>
-                                <span>Quiz Questions</span>
+                                <span data-i18n="stat3">Quiz Questions</span>
                             </div>
                         </div>
                         <div class="stat-item">
                             <i class="fa-regular fa-star text-orange"></i>
                             <div class="stat-text">
                                 <strong>100%</strong>
-                                <span>Free to Learn</span>
+                                <span data-i18n="stat4">Free to Learn</span>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-signs-post text-blue"></i></div>
                     <div class="f-content">
                         <h4 data-i18n="navJourney">Journey</h4>
-                        <p>Follow the complete election process step by step</p>
+                        <p data-i18n="feat1Desc">Follow the complete election process step by step</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -174,7 +174,7 @@
                     <div class="f-icon bg-light-green"><i class="fa-solid fa-book-open text-green"></i></div>
                     <div class="f-content">
                         <h4 data-i18n="navKB">Knowledge Base</h4>
-                        <p>Learn key concepts with interactive cards</p>
+                        <p data-i18n="feat2Desc">Learn key concepts with interactive cards</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -183,7 +183,7 @@
                     <div class="f-icon bg-light-red"><i class="fa-regular fa-clock text-red"></i></div>
                     <div class="f-content">
                         <h4 data-i18n="navTimeline">Timeline</h4>
-                        <p>See the election process as a timeline</p>
+                        <p data-i18n="feat3Desc">See the election process as a timeline</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -192,7 +192,7 @@
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-id-card-clip text-blue"></i></div>
                     <div class="f-content">
                         <h4 data-i18n="navVid">Voter ID Card</h4>
-                        <p>Explore your digital Voter ID</p>
+                        <p data-i18n="feat4Desc">Explore your digital Voter ID</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -201,7 +201,7 @@
                     <div class="f-icon bg-light-purple"><i class="fa-solid fa-trophy text-purple"></i></div>
                     <div class="f-content">
                         <h4 data-i18n="navQuiz">Quiz</h4>
-                        <p>Test your knowledge and earn a certificate</p>
+                        <p data-i18n="feat5Desc">Test your knowledge and earn a certificate</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -209,8 +209,8 @@
                 <div class="feature-card">
                     <div class="f-icon bg-light-orange"><i class="fa-regular fa-file-lines text-orange"></i></div>
                     <div class="f-content">
-                        <h4>Resources</h4>
-                        <p>Explore useful guides and references</p>
+                        <h4 data-i18n="feat6">Resources</h4>
+                        <p data-i18n="feat6Desc">Explore useful guides and references</p>
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
@@ -306,7 +306,7 @@
                             </svg>
                         </div>
 
-                        <h5>Journey Progress</h5>
+                        <h5 data-i18n="progS1">Journey Progress</h5>
                         <p class="text-sm text-muted mb-4">Start your learning journey to track your progress</p>
                         
                         <button class="btn-primary w-100" onclick="startJourney()">
@@ -322,15 +322,15 @@
                 <div class="b-feature">
                     <i class="fa-regular fa-face-smile text-primary"></i>
                     <div>
-                        <h6>Easy to Understand</h6>
-                        <p>Simple language for everyone</p>
+                        <h6 data-i18n="bot1">Easy to Understand</h6>
+                        <p data-i18n="bot1Desc">Simple language for everyone</p>
                     </div>
                 </div>
                 <div class="b-divider"></div>
                 <div class="b-feature">
                     <i class="fa-solid fa-hand-pointer text-green"></i>
                     <div>
-                        <h6>Interactive Learning</h6>
+                        <h6 data-i18n="bot2">Interactive Learning</h6>
                         <p>Engaging & hands-on experience</p>
                     </div>
                 </div>
@@ -339,14 +339,14 @@
                     <i class="fa-solid fa-mobile-screen-button text-red"></i>
                     <div>
                         <h6>Mobile Friendly</h6>
-                        <p>Learn on any device</p>
+                        <p data-i18n="bot2Desc">Learn on any device</p>
                     </div>
                 </div>
                 <div class="b-divider"></div>
                 <div class="b-feature">
                     <i class="fa-solid fa-shield-halved text-primary"></i>
                     <div>
-                        <h6>Trusted Information</h6>
+                        <h6 data-i18n="bot3">Trusted Information</h6>
                         <p>Accurate & reliable content</p>
                     </div>
                 </div>
@@ -545,22 +545,22 @@
                 <div class="feature-card" onclick="window.open('https://voters.eci.gov.in/', '_blank')">
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-globe text-blue"></i></div>
                     <div class="f-content">
-                        <h4>Voter Service Portal</h4>
+                        <h4 data-i18n="vsp">Voter Service Portal</h4>
                         <p>Official ECI portal for registration & epic download</p>
                     </div>
                 </div>
                 <div class="feature-card" onclick="window.open('https://eci.gov.in/', '_blank')">
                     <div class="f-icon bg-light-green"><i class="fa-solid fa-landmark text-green"></i></div>
                     <div class="f-content">
-                        <h4>Election Commission of India</h4>
+                        <h4 data-i18n="eciApp">Election Commission of India</h4>
                         <p>Main website for Election Commission rules & notifications</p>
                     </div>
                 </div>
                 <div class="feature-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.eci.citizen', '_blank')">
                     <div class="f-icon bg-light-orange"><i class="fa-solid fa-mobile-screen-button text-orange"></i></div>
                     <div class="f-content">
-                        <h4>Voter Helpline App</h4>
-                        <p>Download the official mobile app</p>
+                        <h4 data-i18n="vha">Voter Helpline App</h4>
+                        <p data-i18n="vhaDesc">Download the official mobile app</p>
                     </div>
                 </div>
             </div>
@@ -577,24 +577,25 @@
             </div>
             
             <div class="about-container animate-slide-up" style="animation-delay: 0.2s; max-width: 800px; margin: 0 auto; background: var(--bg-card); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border); color: var(--text-dark); line-height: 1.6;">
-                <h4 style="margin-bottom: 1rem; color: var(--primary); font-size: 1.5rem;">Google Prompt Wars</h4>
+                <h4 data-i18n="aboutPageTitle1" style="margin-bottom: 1rem; color: var(--primary); font-size: 1.5rem;">Google Prompt Wars</h4>
                 
-                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-bullseye text-red"></i> The Problem Statement</h5>
-                <p style="margin-bottom: 1rem; padding: 1rem; background: var(--bg-main); border-left: 4px solid var(--red); border-radius: 4px; font-style: italic;">
+                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-bullseye text-red"></i> <span data-i18n="aboutPageTitle2">The Problem Statement</span></h5>
+                <p data-i18n="aboutPageQuote" style="margin-bottom: 1rem; padding: 1rem; background: var(--bg-main); border-left: 4px solid var(--red); border-radius: 4px; font-style: italic;">
                     "Create an assistant that helps users understand the election process, timelines, and steps in an interactive and easy-to-follow way."
                 </p>
 
-                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-lightbulb text-gold"></i> The Solution</h5>
-                <p style="margin-bottom: 1rem;">This application transforms static information into an engaging, multi-faceted "Election Explorer Assistant". Here is how the challenge was solved:</p>
+                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-lightbulb text-gold"></i> <span data-i18n="aboutPageTitle3">The Solution</span></h5>
+                <p data-i18n="aboutPageDesc" style="margin-bottom: 1rem;">This application transforms static information into an engaging, multi-faceted "Election Explorer Assistant". Here is how the challenge was solved:</p>
                 
                 <ul style="list-style-type: disc; margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li><strong>Interactive Step-by-Step Journey:</strong> Simplifies complex processes like registering and answering FAQs, tracking the process visually.</li>
-                    <li><strong>Election Chatbot Assistant:</strong> A simulated AI Chatbot (lower-right FAB) provides on-demand answers to common queries (e.g., "Where is my polling booth?", "What is an EVM?").</li>
-                    <li><strong>Dynamic Region-Based Timelines:</strong> Allows switching between General flows and specific State schedules (e.g., Maharashtra, Delhi) to provide real-world insights.</li>
-                    <li><strong>Interactive Voter ID UI:</strong> Let users experience the structure of an EPIC card digitally.</li>
-                    <li><strong>Knowledge Base & Quiz Assessment:</strong> Ensures users understand the terms, rewarding them with visual progression paths.</li>
-                    <li><strong>Personalized Onboarding:</strong> Asks users context questions to dynamically update the assistant flow based on their status.</li>
-                    <li><strong>Uncompromised Multilingual Support:</strong> Real-time in-app localization across English, Hindi, Marathi, and Tamil to support deep regional accessibility.</li>
+                    <li data-i18n="aboutPageLi1"><strong>Interactive Step-by-Step Journey:</strong> Simplifies complex processes like registering and answering FAQs, tracking the process visually.</li>
+                    <li data-i18n="aboutPageLi2"><strong>Election Chatbot Assistant:</strong> A simulated AI Chatbot (lower-right FAB) provides on-demand answers to common queries (e.g., "Where is my polling booth?", "What is an EVM?").</li>
+                    <li data-i18n="aboutPageLi3"><strong>Dynamic Region-Based Timelines:</strong> Allows switching between General flows and specific State schedules (e.g., Maharashtra, Delhi) to provide real-world insights.</li>
+                    <li data-i18n="aboutPageLi4"><strong>Interactive Voter ID UI:</strong> Let users experience the structure of an EPIC card digitally.</li>
+                    <li data-i18n="aboutPageLi5"><strong>Knowledge Base & Quiz Assessment:</strong> Ensures users understand the terms, rewarding them with visual progression paths.</li>
+                    <li data-i18n="aboutPageLi6"><strong>Personalized Onboarding:</strong> Asks users context questions to dynamically update the assistant flow based on their status.</li>
+                    <li data-i18n="aboutPageLi7"><strong>Uncompromised Multilingual Support:</strong> Real-time in-app localization across English, Hindi, Marathi, and Tamil to support deep regional accessibility.</li>
+                    <li data-i18n="aboutPageLi8"><strong>Complete Data Isolation:</strong> No mock 'my data' usage; purely educational and modular so real government endpoints could be hooked up in the future.</li>
                 </ul>
             </div>
         </section>
@@ -618,28 +619,31 @@
     </div>
     <button id="chatbot-fab" class="chatbot-fab"><i class="fa-solid fa-comment-dots"></i></button>
 
-    <script src="data.js"></script>
+    <script src="i18n/en.js"></script>
+    <script src="i18n/hi.js"></script>
+    <script src="i18n/mr.js"></script>
+    <script src="i18n/ta.js"></script>
     <script src="app.js"></script>
 
     <!-- Onboarding Modal -->
     <div id="onboarding-modal" class="modal-overlay hidden">
         <div class="modal-content text-center">
-            <h3><i class="fa-solid fa-clipboard-user text-primary" style="font-size:2rem; margin-bottom:1rem;"></i><br>Personalize Your Journey</h3>
-            <p>Tell us a bit about yourself so we can guide you better.</p>
+            <h3><i class="fa-solid fa-clipboard-user text-primary" style="font-size:2rem; margin-bottom:1rem;"></i><br><span data-i18n="onboardTitle"><span data-i18n="onboardTitle">Personalize Your Journey</span></span></h3>
+            <p data-i18n="onboardDesc">Tell us a bit about yourself so we can guide you better.</p>
             <div style="margin-bottom: 1.5rem; text-align:left;">
-                <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Are you a first-time voter?</label>
+                <label data-i18n="onboardQ1" style="display:block; margin-bottom:0.5rem; font-weight:600;" data-i18n="onboardQ1">Are you a first-time voter?</label>
                 <select id="onboarding-firsttime" class="nav-lang-sel" style="width:100%;">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="yes" data-i18n="onboardA1Yes">Yes</option>
+                    <option value="no" data-i18n="onboardA1No">No</option>
                 </select>
                 
-                <label style="display:block; margin-top:1rem; margin-bottom:0.5rem; font-weight:600;">Have you registered to vote?</label>
+                <label data-i18n="onboardQ2" style="display:block; margin-top:1rem; margin-bottom:0.5rem; font-weight:600;" data-i18n="onboardQ2">Have you registered to vote?</label>
                 <select id="onboarding-registered" class="nav-lang-sel" style="width:100%;">
-                    <option value="no">No, I need to register</option>
-                    <option value="yes">Yes, I am registered</option>
+                    <option value="no" data-i18n="onboardA2No">No, I need to register</option>
+                    <option value="yes" data-i18n="onboardA2Yes">Yes, I am registered</option>
                 </select>
             </div>
-            <button class="btn-primary w-100" id="btn-start-personalized">Start My Journey</button>
+            <button class="btn-primary w-100" id="btn-start-personalized" data-i18n="onboardBtn" data-i18n="onboardBtn">Start My Journey</button>
         </div>
     </div>
 </body>

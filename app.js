@@ -1,25 +1,21 @@
+let currentLang = 'en';
 /**
  * Election Explorer Assistant
  * State Management & UI Logic
  */
 
 // Application State
-const getLocaleStr = (field) => {
-    if (typeof field === 'object' && field !== null) {
-        return field[currentLang] || field['en'] || '';
-    }
-    return field || '';
-};
+const getLocaleStr = (field) => field;
 
 const state = {
     view: 'landing', // 'landing', 'journey', 'dashboard'
     currentStep: 0,
-    totalSteps: electionData.steps.length,
+    get totalSteps() { return window.translations[currentLang].electionData.steps.length; },
     quiz: {
         active: false,
         currentQuestion: 0,
         score: 0,
-        total: electionData.quiz.length
+        get total() { return window.translations[currentLang].electionData.quiz.length; }
     }
 };
 
@@ -83,7 +79,7 @@ const landingProgressCircle = document.getElementById('landing-progress-circle')
 
 // --- Initialization ---
 
-let currentLang = 'en';
+
 
 function init() {
     bindEvents();
@@ -103,7 +99,7 @@ function init() {
 }
 
 function updateAppLanguage() {
-    const tl = appTranslations[currentLang];
+    const tl = window.translations[currentLang].appTranslations;
     if (!tl) return;
     
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -158,9 +154,9 @@ function setupChatbot() {
                         currentLang === 'mr' ? "मला याबद्दल खात्री नाही. तुम्ही तुमच्या मतदान केंद्राबद्दल, आवश्यक कागदपत्रांबद्दल किंवा ईव्हीएम(EVM) बद्दल विचारू शकता." : 
                         currentLang === 'ta' ? "இதைப் பற்றி எனக்கு உறுதியாகத் தெரியவில்லை. உங்கள் வாக்குச்சாவடி, தேவையான ஆவணங்கள் அல்லது EVMகள் பற்றி கேட்கலாம்." :
                         "I'm not sure about that. Try asking about your polling booth, required documents, or EVMs.";
-            for (let item of electionData.chatResponses) {
+            for (let item of window.translations[currentLang].electionData.chatResponses) {
                 if (item.keywords.some(kw => text.includes(kw))) {
-                    reply = getLocaleStr(item.response);
+                    reply = item.response;
                     break;
                 }
             }
@@ -208,14 +204,14 @@ function buildChecklist() {
     if(!container) return;
     container.innerHTML = '';
     
-    if(!electionData.documentsChecklist) return;
+    if(!window.translations[currentLang].electionData.documentsChecklist) return;
 
-    electionData.documentsChecklist.forEach(doc => {
+    window.translations[currentLang].electionData.documentsChecklist.forEach(doc => {
         const item = document.createElement('div');
         item.className = 'checklist-item';
         item.innerHTML = `
             <input type="checkbox" id="${doc.id}" class="checklist-checkbox">
-            <label for="${doc.id}" class="checklist-label">${getLocaleStr(doc.label)}</label>
+            <label for="${doc.id}" class="checklist-label">${doc.label}</label>
         `;
         container.appendChild(item);
     });
@@ -380,7 +376,7 @@ function updateStepperUI() {
 }
 
 function updateJourneyUI() {
-    const data = electionData.steps[state.currentStep];
+    const data = window.translations[currentLang].electionData.steps[state.currentStep];
     
     stepCardWrapper.style.opacity = '0';
     stepCardWrapper.style.transform = 'translateY(10px)';
@@ -390,9 +386,9 @@ function updateJourneyUI() {
         
         uiStepIcon.innerHTML = `<i class="${data.icon}"></i>`;
         uiStepNumber.innerText = `Step ${state.currentStep + 1} of ${state.totalSteps}`;
-        uiStepTitle.innerText = getLocaleStr(data.title);
-        uiStepExp.innerText = getLocaleStr(data.explanation);
-        uiStepDetails.innerText = getLocaleStr(data.learnMore);
+        uiStepTitle.innerText = data.title;
+        uiStepExp.innerText = data.explanation;
+        uiStepDetails.innerText = data.learnMore;
         
         btnPrev.disabled = state.currentStep === 0;
         
@@ -445,7 +441,7 @@ function finishJourney() {
 
 function buildKnowledgeCards() {
     knowledgeGrid.innerHTML = '';
-    electionData.knowledgeCards.forEach((card, index) => {
+    window.translations[currentLang].electionData.knowledgeCards.forEach((card, index) => {
         const el = document.createElement('div');
         el.className = 'k-card-dash';
         el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
@@ -454,12 +450,12 @@ function buildKnowledgeCards() {
             <div class="k-header">
                 <div class="k-title-group">
                     <div class="k-icon"><i class="${card.icon}"></i></div>
-                    <h4>${getLocaleStr(card.title)}</h4>
+                    <h4>${card.title}</h4>
                 </div>
                 <i class="fa-solid fa-chevron-down k-toggle"></i>
             </div>
             <div class="k-content">
-                <p>${getLocaleStr(card.content)}</p>
+                <p>${card.content}</p>
             </div>
         `;
         
@@ -496,7 +492,7 @@ function startQuiz() {
 }
 
 function loadQuestion() {
-    const qData = electionData.quiz[state.quiz.currentQuestion];
+    const qData = window.translations[currentLang].electionData.quiz[state.quiz.currentQuestion];
     
     uiQFeedback.classList.add('hidden');
     uiQFeedback.className = 'q-feedback hidden'; 
@@ -505,9 +501,9 @@ function loadQuestion() {
     
     uiQProgress.innerText = `Question ${state.quiz.currentQuestion + 1}/${state.quiz.total}`;
     uiQScore.innerText = state.quiz.score;
-    uiQText.innerText = getLocaleStr(qData.question);
+    uiQText.innerText = qData.question;
     
-    getLocaleStr(qData.options).forEach((optText, index) => {
+    qData.options.forEach((optText, index) => {
         const btn = document.createElement('button');
         btn.className = 'opt-btn';
         btn.innerHTML = `<span>${optText}</span> <i class="fa-solid fa-circle opt-icon" style="color: var(--border)"></i>`;
@@ -518,7 +514,7 @@ function loadQuestion() {
 }
 
 function submitAnswer(selectedIndex, selectedBtn) {
-    const qData = electionData.quiz[state.quiz.currentQuestion];
+    const qData = window.translations[currentLang].electionData.quiz[state.quiz.currentQuestion];
     const isCorrect = selectedIndex === qData.answer;
     
     const options = uiQOptions.querySelectorAll('.opt-btn');
@@ -601,9 +597,9 @@ function buildTimeline(region = "General") {
     
     // Determine data source
     const isState = region !== "General";
-    const dataList = isState && electionData.stateTimelines[region] 
-        ? electionData.stateTimelines[region] 
-        : electionData.steps;
+    const dataList = isState && window.translations[currentLang].electionData.stateTimelines[region] 
+        ? window.translations[currentLang].electionData.stateTimelines[region] 
+        : window.translations[currentLang].electionData.steps;
 
     dataList.forEach((itemData, index) => {
         const item = document.createElement('div');
@@ -616,8 +612,8 @@ function buildTimeline(region = "General") {
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-step">${itemData.date}</div>
-                    <h3>${getLocaleStr(itemData.event)}</h3>
-                    <p>Expected date for ${getLocaleStr(itemData.event)} in ${region}.</p>
+                    <h3>${itemData.event}</h3>
+                    <p>Expected date for ${itemData.event} in ${region}.</p>
                 </div>
             `;
         } else {
@@ -627,8 +623,8 @@ function buildTimeline(region = "General") {
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-step">Step ${index + 1}</div>
-                    <h3>${getLocaleStr(itemData.title)}</h3>
-                    <p>${getLocaleStr(itemData.explanation)}</p>
+                    <h3>${itemData.title}</h3>
+                    <p>${itemData.explanation}</p>
                 </div>
             `;
         }
@@ -641,8 +637,8 @@ function buildTimeline(region = "General") {
 function buildVoterIdUI() {
     const root = document.getElementById('voterid-root');
     if (!root) return;
-    const tl = i18n[currentLang];
-    const data = voterIdData;
+    const tl = window.translations[currentLang].i18n;
+    const data = window.translations[currentLang].voterIdData;
     
     // Helper to get translated field or fallback to English
     const getVal = (field) => {
