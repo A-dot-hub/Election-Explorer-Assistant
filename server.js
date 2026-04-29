@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 // Load environment variables
 dotenv.config();
 
-// Fix for __dirname in ES modules
+// Fix __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -62,8 +62,8 @@ Keep answers concise and educational. If unsure, advise checking the official EC
   }
 });
 
-// SPA fallback
-app.get('/*', (req, res) => {
+// ✅ FIXED SPA fallback (Express 5 compatible)
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
