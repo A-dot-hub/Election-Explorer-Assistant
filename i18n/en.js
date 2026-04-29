@@ -275,6 +275,19 @@ window.translations['en'] = {
         "aboutTitle": "About this Project",
         "aboutSub": "Details about the submission",
         "chatTitle": "Election Assistant",
-        "chatGreet": "Hi! I am your Election Assistant. Ask me anything like 'Where is my polling booth?' or 'What age is required to vote?'"
+        "chatGreet": "Hi! I am your Election Assistant. Ask me anything like 'Where is my polling booth?' or 'What age is required to vote?'",
+        "badgeScholar": "Democratic Scholar",
+        "badgeExplorer": "Process Explorer",
+        "badgeVoter": "Informed Citizen",
+        "badgeScholarDesc": "Score 100% on the quiz",
+        "badgeExplorerDesc": "Complete the learning journey",
+        "badgeVoterDesc": "Score at least 50% on the quiz",
+        "feedbackCorrect": "Correct! Well done.",
+        "feedbackWrong": "Incorrect. The right answer is highlighted.",
+        "alertNotRegistered": "Since you are not registered, pay close attention to Step 1!",
+        "quizPerfect": "Perfect score! You are a true democratic scholar.",
+        "quizGood": "Good job! You have a solid grasp of the process.",
+        "quizLow": "Keep exploring the journey to improve your knowledge!",
+        "quizRetry": "Retake Quiz"
     }
 };

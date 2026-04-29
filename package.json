@@ -1,0 +1,25 @@
+{
+  "name": "election-explorer-assistant",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive Election Explorer",
+  "main": "server.ts",
+  "scripts": {
+    "start": "node server.ts",
+    "lint": "echo 'No linting required'",
+    "build": "echo 'No build step required' && mkdir -p dist && cp -r * dist/ || true"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "groq-sdk": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "serve": "^14.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

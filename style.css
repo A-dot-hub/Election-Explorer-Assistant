@@ -518,12 +518,91 @@ button:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important;
 .opt-btn { width: 100%; text-align: left; padding: 1.25rem; border: 2px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); font-size: 1.1rem; font-weight: 500; }
 .opt-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
 .opt-btn.correct { border-color: var(--success); background: var(--success-bg); color: #065F46; }
+.dark .opt-btn.correct { color: #D1FAE5; }
 .opt-btn.wrong { border-color: var(--error); background: var(--error-bg); color: #991B1B; }
+.dark .opt-btn.wrong { color: #FEE2E2; }
 .opt-icon { margin-left: auto; }
 .q-footer { display: flex; justify-content: space-between; align-items: center; min-height: 50px; }
 .q-feedback { padding: 0.75rem 1.25rem; border-radius: var(--radius-full); font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
 .q-feedback.success { background: var(--success-bg); color: #065F46; }
+.dark .q-feedback.success { color: #D1FAE5; }
 .q-feedback.error { background: var(--error-bg); color: #991B1B; }
+.dark .q-feedback.error { color: #FEE2E2; }
+
+/* Badge System */
+.badges-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.3;
+    filter: grayscale(1);
+    transition: var(--transition);
+}
+
+.badge-item.earned {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.badge-icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.badge-item.earned .badge-icon-wrap {
+    border-color: #FBBF24; /* Gold */
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+}
+
+.dark .badge-item.earned .badge-icon-wrap {
+    background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+}
+
+.badge-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.badge-sparkle {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: #FBBF24;
+    font-size: 1.2rem;
+    display: none;
+}
+
+.badge-item.earned .badge-sparkle {
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
 
 /* Timeline UI */
 .timeline-container { position: relative; max-width: 800px; margin: 0 auto 4rem; padding-left: 2rem; }
