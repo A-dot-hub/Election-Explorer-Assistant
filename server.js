@@ -5,7 +5,7 @@ import Groq from 'groq-sdk';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load environment variables
+
 dotenv.config();
 
 // Fix __dirname in ES modules

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,13 @@
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Main Navigation -->
@@ -24,7 +27,7 @@
                     <span class="logo-subtitle">Learn. Understand. Empower.</span>
                 </div>
             </div>
-            
+
             <ul class="nav-links">
                 <li class="active" onclick="switchView('landing')" data-i18n="navHome">Home</li>
                 <li onclick="switchView('journey')" data-i18n="navJourney">Journey</li>
@@ -36,7 +39,7 @@
                 <li onclick="switchView('resources')" data-i18n="navResources">Resources</li>
                 <li onclick="switchView('about')" data-i18n="navAbout">About</li>
             </ul>
-            
+
             <div class="nav-actions">
                 <div class="lang-switcher">
                     <select id="global-lang-select" class="nav-lang-sel">
@@ -59,32 +62,34 @@
 
         <!-- View 1: Advanced Landing Page -->
         <section id="view-landing" class="view active">
-            
+
             <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-left">
                     <div class="badge-primary">
                         <i class="fa-solid fa-star"></i> <span data-i18n="heroPre">Interactive Learning</span>
                     </div>
-                    
+
                     <h1 class="hero-title">
                         <span data-i18n="heroT1">Explore. Learn.</span><br>
                         <span class="text-primary" data-i18n="heroT2">Understand Elections.</span>
                     </h1>
-                    
+
                     <p class="hero-desc" data-i18n="heroDesc">
-                        A step-by-step interactive journey to help you understand how elections work, from registration to results.
+                        A step-by-step interactive journey to help you understand how elections work, from registration
+                        to results.
                     </p>
-                    
+
                     <div class="hero-buttons">
                         <button class="btn-primary btn-large" onclick="startJourney()">
-                            <i class="fa-solid fa-rocket"></i> <span data-i18n="btnStart">Start Learning Journey</span> <i class="fa-solid fa-arrow-right"></i>
+                            <i class="fa-solid fa-rocket"></i> <span data-i18n="btnStart">Start Learning Journey</span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </button>
                         <button class="btn-outline btn-large" onclick="switchView('dashboard')">
                             <i class="fa-regular fa-compass"></i> <span data-i18n="btnExplore">Explore Features</span>
                         </button>
                     </div>
-                    
+
                     <div class="hero-stats">
                         <div class="stat-item">
                             <i class="fa-solid fa-layer-group text-primary"></i>
@@ -116,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="hero-right">
                     <!-- CSS Illustration Composition -->
                     <div class="illustration-wrapper">
@@ -125,26 +130,29 @@
                             <div class="pill-icon bg-light-blue"><i class="fa-solid fa-user-plus text-blue"></i></div>
                             <span>Register</span>
                         </div>
-                        
+
                         <div class="floating-pill pill-top-right">
-                            <div class="pill-icon bg-light-green"><i class="fa-solid fa-check-to-slot text-green"></i></div>
+                            <div class="pill-icon bg-light-green"><i class="fa-solid fa-check-to-slot text-green"></i>
+                            </div>
                             <span>Vote</span>
                         </div>
-                        
+
                         <div class="floating-pill pill-bottom-left">
                             <div class="pill-icon bg-light-purple"><i class="fa-solid fa-users text-purple"></i></div>
                             <span>Participate</span>
                         </div>
-                        
+
                         <div class="floating-pill pill-bottom-right">
-                            <div class="pill-icon bg-light-orange"><i class="fa-solid fa-building-columns text-orange"></i></div>
+                            <div class="pill-icon bg-light-orange"><i
+                                    class="fa-solid fa-building-columns text-orange"></i></div>
                             <span>Democracy</span>
                         </div>
 
                         <!-- Center Graphic: Ballot Box -->
                         <div class="ballot-box-graphic">
                             <div class="ballot-paper">
-                                <i class="fa-solid fa-check" style="color: #10B981; font-size: 2rem; margin-top: 20px;"></i>
+                                <i class="fa-solid fa-check"
+                                    style="color: #10B981; font-size: 2rem; margin-top: 20px;"></i>
                             </div>
                             <div class="ballot-box-body">
                                 <div class="ballot-slot"></div>
@@ -152,7 +160,7 @@
                             </div>
                             <div class="box-shadow-bottom"></div>
                         </div>
-                        
+
                         <!-- Background elements -->
                         <div class="bg-swoosh"></div>
                     </div>
@@ -169,7 +177,7 @@
                     </div>
                     <i class="fa-solid fa-chevron-right f-arrow"></i>
                 </div>
-                
+
                 <div class="feature-card" onclick="switchView('dashboard')">
                     <div class="f-icon bg-light-green"><i class="fa-solid fa-book-open text-green"></i></div>
                     <div class="f-content">
@@ -218,12 +226,12 @@
 
             <!-- Dashboard Grid Area -->
             <div class="dashboard-bottom-grid">
-                
+
                 <!-- Knowledge Base Preview Section -->
                 <div class="kb-preview-section">
                     <h3 class="section-heading" data-i18n="kbPreviewMsg">Knowledge Base Preview</h3>
                     <div class="kb-preview-cards">
-                        
+
                         <div class="kb-card card-blue" onclick="switchView('dashboard')">
                             <div class="kb-card-header">
                                 <i class="fa-solid fa-box-archive"></i>
@@ -294,21 +302,20 @@
                 <div class="progress-section">
                     <div class="white-card progress-card text-center">
                         <h4 class="card-title" data-i18n="progTitle">Your Progress</h4>
-                        
+
                         <div class="progress-circle-wrapper">
                             <svg viewBox="0 0 36 36" class="prog-chart">
                                 <path class="prog-bg"
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="prog-value" id="landing-progress-circle"
-                                  stroke-dasharray="0, 100"
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="prog-value" id="landing-progress-circle" stroke-dasharray="0, 100"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                                 <text x="18" y="20.35" class="prog-text" id="landing-progress-text">0%</text>
                             </svg>
                         </div>
 
                         <h5 data-i18n="progS1">Journey Progress</h5>
                         <p class="text-sm text-muted mb-4">Start your learning journey to track your progress</p>
-                        
+
                         <button class="btn-primary w-100" onclick="startJourney()">
                             <i class="fa-solid fa-rocket"></i> <span data-i18n="progStart">Start Now</span>
                         </button>>
@@ -380,12 +387,13 @@
                             <h2 id="step-title">Voter Registration</h2>
                         </div>
                     </div>
-                    
+
                     <p class="step-explanation" id="step-explanation">Explanation here.</p>
-                    
+
                     <div class="learn-more-box">
                         <button id="btn-learn-more" class="btn-outline">
-                            <i class="fa-solid fa-lightbulb"></i> Learn More <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                            <i class="fa-solid fa-lightbulb"></i> Learn More <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i>
                         </button>
                         <div id="learn-more-content" class="expandable-content">
                             <div class="content-inner" id="step-details">
@@ -409,28 +417,30 @@
 
         <!-- View 3: Dashboard (Cards & Quiz) -->
         <section id="view-dashboard" class="view hidden">
-            
+
             <button class="btn-outline mb-4" onclick="switchView('landing')">
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
 
             <!-- Knowledge Cards Section -->
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-solid fa-book-open text-primary"></i> <span data-i18n="navKB">Full Knowledge Base</span></h3>
+                <h3><i class="fa-solid fa-book-open text-primary"></i> <span data-i18n="navKB">Full Knowledge
+                        Base</span></h3>
                 <p>Expand cards to learn more</p>
             </div>
-            
+
             <div id="knowledge-grid" class="cards-grid animate-slide-up" style="animation-delay: 0.2s">
                 <!-- Cards generated dynamically -->
             </div>
 
             <!-- Quiz Section -->
             <div class="section-title animate-slide-up mt-5" style="animation-delay: 0.3s" id="quiz-section-anchor">
-                <h3><i class="fa-solid fa-brain text-purple"></i> <span data-i18n="quizTitle">Test Your Knowledge</span></h3>
+                <h3><i class="fa-solid fa-brain text-purple"></i> <span data-i18n="quizTitle">Test Your Knowledge</span>
+                </h3>
             </div>
 
             <div class="quiz-container animate-slide-up" style="animation-delay: 0.4s">
-                
+
                 <!-- Quiz Intro -->
                 <div id="quiz-intro" class="quiz-panel text-center">
                     <i class="fa-solid fa-clipboard-question quiz-icon-large"></i>
@@ -445,13 +455,13 @@
                         <span class="q-progress" id="quiz-progress">Question 1/5</span>
                         <div class="q-score-badge">Score: <span id="quiz-score-display">0</span></div>
                     </div>
-                    
+
                     <h3 class="q-text" id="quiz-question">Question text goes here?</h3>
-                    
+
                     <div id="quiz-options" class="q-options">
                         <!-- Options generated dynamically -->
                     </div>
-                    
+
                     <div class="q-footer">
                         <div id="quiz-feedback" class="q-feedback hidden">
                             <i class="icon"></i> <span class="text"></span>
@@ -466,20 +476,19 @@
                 <div id="quiz-results" class="quiz-panel hidden text-center">
                     <i class="fa-solid fa-trophy text-gold result-icon"></i>
                     <h3>Quiz Complete!</h3>
-                    
+
                     <div class="circular-score">
                         <svg viewBox="0 0 36 36" class="circular-chart">
                             <path class="circle-bg"
-                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle" id="score-circle-path"
-                              stroke-dasharray="0, 100"
-                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" id="score-circle-path" stroke-dasharray="0, 100"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                             <text x="18" y="20.35" class="percentage" id="final-score-text">0/5</text>
                         </svg>
                     </div>
-                    
+
                     <p id="quiz-final-message" class="result-message">Great job!</p>
-                    
+
                     <div id="badges-display" class="badges-container">
                         <!-- Earned badges will appear here -->
                     </div>
@@ -498,7 +507,8 @@
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-regular fa-clock text-red"></i> <span data-i18n="timelineTitle">Election Process Timeline</span></h3>
+                <h3><i class="fa-regular fa-clock text-red"></i> <span data-i18n="timelineTitle">Election Process
+                        Timeline</span></h3>
                 <p>An overview of how events unfold</p>
                 <div style="margin-top:20px;">
                     <label for="state-timeline-select"><strong>Select Region:</strong></label>
@@ -510,7 +520,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div id="timeline-container" class="timeline-container animate-slide-up" style="animation-delay: 0.2s">
                 <!-- Dynamically generated timeline -->
             </div>
@@ -530,10 +540,12 @@
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-solid fa-clipboard-list text-primary"></i> <span data-i18n="toolsTitle">Document Checklist</span></h3>
+                <h3><i class="fa-solid fa-clipboard-list text-primary"></i> <span data-i18n="toolsTitle">Document
+                        Checklist</span></h3>
                 <p data-i18n="toolsDesc">Ensure you have these before registering</p>
             </div>
-            <div class="checklist-container card-white animate-slide-up" style="animation-delay: 0.2s" id="checklist-container">
+            <div class="checklist-container card-white animate-slide-up" style="animation-delay: 0.2s"
+                id="checklist-container">
             </div>
         </section>
 
@@ -543,10 +555,12 @@
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-regular fa-file-lines text-orange"></i> <span data-i18n="resTitle">Resources</span></h3>
+                <h3><i class="fa-regular fa-file-lines text-orange"></i> <span data-i18n="resTitle">Resources</span>
+                </h3>
                 <p data-i18n="resDesc">Helpful links and external references</p>
             </div>
-            <div class="resources-container animate-slide-up" style="animation-delay: 0.2s; display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
+            <div class="resources-container animate-slide-up"
+                style="animation-delay: 0.2s; display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
                 <div class="feature-card" onclick="window.open('https://voters.eci.gov.in/', '_blank')">
                     <div class="f-icon bg-light-blue"><i class="fa-solid fa-globe text-blue"></i></div>
                     <div class="f-content">
@@ -561,8 +575,10 @@
                         <p>Main website for Election Commission rules & notifications</p>
                     </div>
                 </div>
-                <div class="feature-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.eci.citizen', '_blank')">
-                    <div class="f-icon bg-light-orange"><i class="fa-solid fa-mobile-screen-button text-orange"></i></div>
+                <div class="feature-card"
+                    onclick="window.open('https://play.google.com/store/apps/details?id=com.eci.citizen', '_blank')">
+                    <div class="f-icon bg-light-orange"><i class="fa-solid fa-mobile-screen-button text-orange"></i>
+                    </div>
                     <div class="f-content">
                         <h4 data-i18n="vha">Voter Helpline App</h4>
                         <p data-i18n="vhaDesc">Download the official mobile app</p>
@@ -577,30 +593,54 @@
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="journeyBack">Back to Home</span>
             </button>
             <div class="section-title animate-slide-up" style="animation-delay: 0.1s">
-                <h3><i class="fa-solid fa-circle-info text-primary"></i> <span data-i18n="aboutTitle">About this Project</span></h3>
+                <h3><i class="fa-solid fa-circle-info text-primary"></i> <span data-i18n="aboutTitle">About this
+                        Project</span></h3>
                 <p data-i18n="aboutSub">Details about the Google Prompt Wars submission</p>
             </div>
-            
-            <div class="about-container animate-slide-up" style="animation-delay: 0.2s; max-width: 800px; margin: 0 auto; background: var(--bg-card); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border); color: var(--text-dark); line-height: 1.6;">
-                <h4 data-i18n="aboutPageTitle1" style="margin-bottom: 1rem; color: var(--primary); font-size: 1.5rem;">Google Prompt Wars</h4>
-                
-                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-bullseye text-red"></i> <span data-i18n="aboutPageTitle2">The Problem Statement</span></h5>
-                <p data-i18n="aboutPageQuote" style="margin-bottom: 1rem; padding: 1rem; background: var(--bg-main); border-left: 4px solid var(--red); border-radius: 4px; font-style: italic;">
-                    "Create an assistant that helps users understand the election process, timelines, and steps in an interactive and easy-to-follow way."
+
+            <div class="about-container animate-slide-up"
+                style="animation-delay: 0.2s; max-width: 800px; margin: 0 auto; background: var(--bg-card); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border); color: var(--text-dark); line-height: 1.6;">
+                <h4 data-i18n="aboutPageTitle1" style="margin-bottom: 1rem; color: var(--primary); font-size: 1.5rem;">
+                    Google Prompt Wars</h4>
+
+                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i
+                        class="fa-solid fa-bullseye text-red"></i> <span data-i18n="aboutPageTitle2">The Problem
+                        Statement</span></h5>
+                <p data-i18n="aboutPageQuote"
+                    style="margin-bottom: 1rem; padding: 1rem; background: var(--bg-main); border-left: 4px solid var(--red); border-radius: 4px; font-style: italic;">
+                    "Create an assistant that helps users understand the election process, timelines, and steps in an
+                    interactive and easy-to-follow way."
                 </p>
 
-                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i class="fa-solid fa-lightbulb text-gold"></i> <span data-i18n="aboutPageTitle3">The Solution</span></h5>
-                <p data-i18n="aboutPageDesc" style="margin-bottom: 1rem;">This application transforms static information into an engaging, multi-faceted "Election Explorer Assistant". Here is how the challenge was solved:</p>
-                
-                <ul style="list-style-type: disc; margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li data-i18n="aboutPageLi1"><strong>Interactive Step-by-Step Journey:</strong> Simplifies complex processes like registering and answering FAQs, tracking the process visually.</li>
-                    <li data-i18n="aboutPageLi2"><strong>Election Chatbot Assistant:</strong> A simulated AI Chatbot (lower-right FAB) provides on-demand answers to common queries (e.g., "Where is my polling booth?", "What is an EVM?").</li>
-                    <li data-i18n="aboutPageLi3"><strong>Dynamic Region-Based Timelines:</strong> Allows switching between General flows and specific State schedules (e.g., Maharashtra, Delhi) to provide real-world insights.</li>
-                    <li data-i18n="aboutPageLi4"><strong>Interactive Voter ID UI:</strong> Let users experience the structure of an EPIC card digitally.</li>
-                    <li data-i18n="aboutPageLi5"><strong>Knowledge Base & Quiz Assessment:</strong> Ensures users understand the terms, rewarding them with visual progression paths.</li>
-                    <li data-i18n="aboutPageLi6"><strong>Personalized Onboarding:</strong> Asks users context questions to dynamically update the assistant flow based on their status.</li>
-                    <li data-i18n="aboutPageLi7"><strong>Uncompromised Multilingual Support:</strong> Real-time in-app localization across English, Hindi, Marathi, and Tamil to support deep regional accessibility.</li>
-                    <li data-i18n="aboutPageLi8"><strong>Complete Data Isolation:</strong> No mock 'my data' usage; purely educational and modular so real government endpoints could be hooked up in the future.</li>
+                <h5 style="margin-top: 1.5rem; font-weight: bold; font-size: 1.1rem;"><i
+                        class="fa-solid fa-lightbulb text-gold"></i> <span data-i18n="aboutPageTitle3">The
+                        Solution</span></h5>
+                <p data-i18n="aboutPageDesc" style="margin-bottom: 1rem;">This application transforms static information
+                    into an engaging, multi-faceted "Election Explorer Assistant". Here is how the challenge was solved:
+                </p>
+
+                <ul
+                    style="list-style-type: disc; margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li data-i18n="aboutPageLi1"><strong>Interactive Step-by-Step Journey:</strong> Simplifies complex
+                        processes like registering and answering FAQs, tracking the process visually.</li>
+                    <li data-i18n="aboutPageLi2"><strong>Election Chatbot Assistant:</strong> A simulated AI Chatbot
+                        (lower-right FAB) provides on-demand answers to common queries (e.g., "Where is my polling
+                        booth?", "What is an EVM?").</li>
+                    <li data-i18n="aboutPageLi3"><strong>Dynamic Region-Based Timelines:</strong> Allows switching
+                        between General flows and specific State schedules (e.g., Maharashtra, Delhi) to provide
+                        real-world insights.</li>
+                    <li data-i18n="aboutPageLi4"><strong>Interactive Voter ID UI:</strong> Let users experience the
+                        structure of an EPIC card digitally.</li>
+                    <li data-i18n="aboutPageLi5"><strong>Knowledge Base & Quiz Assessment:</strong> Ensures users
+                        understand the terms, rewarding them with visual progression paths.</li>
+                    <li data-i18n="aboutPageLi6"><strong>Personalized Onboarding:</strong> Asks users context questions
+                        to dynamically update the assistant flow based on their status.</li>
+                    <li data-i18n="aboutPageLi7"><strong>Uncompromised Multilingual Support:</strong> Real-time in-app
+                        localization across English, Hindi, Marathi, and Tamil to support deep regional accessibility.
+                    </li>
+                    <li data-i18n="aboutPageLi8"><strong>Complete Data Isolation:</strong> No mock 'my data' usage;
+                        purely educational and modular so real government endpoints could be hooked up in the future.
+                    </li>
                 </ul>
             </div>
         </section>
@@ -614,12 +654,14 @@
             <i class="fa-solid fa-chevron-down" id="chatbot-toggle"></i>
         </div>
         <div class="chatbot-body" id="chatbot-body">
-            <div class="chat-message bot-msg" data-i18n="chatGreet">Hi! I am your Election Assistant. Ask me anything like "Where is my polling booth?" or "What age is required to vote?"</div>
+            <div class="chat-message bot-msg" data-i18n="chatGreet">Hi! I am your Election Assistant. Ask me anything
+                like "Where is my polling booth?" or "What age is required to vote?"</div>
             <!-- Chat history here -->
         </div>
         <div class="chatbot-footer">
             <input type="text" id="chat-input" placeholder="Type your question...">
-            <button id="chat-send" class="btn-primary" style="padding: 0.5rem 1rem;"><i class="fa-solid fa-paper-plane"></i></button>
+            <button id="chat-send" class="btn-primary" style="padding: 0.5rem 1rem;"><i
+                    class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
     <button id="chatbot-fab" class="chatbot-fab"><i class="fa-solid fa-comment-dots"></i></button>
@@ -633,23 +675,30 @@
     <!-- Onboarding Modal -->
     <div id="onboarding-modal" class="modal-overlay hidden">
         <div class="modal-content text-center">
-            <h3><i class="fa-solid fa-clipboard-user text-primary" style="font-size:2rem; margin-bottom:1rem;"></i><br><span data-i18n="onboardTitle"><span data-i18n="onboardTitle">Personalize Your Journey</span></span></h3>
+            <h3><i class="fa-solid fa-clipboard-user text-primary"
+                    style="font-size:2rem; margin-bottom:1rem;"></i><br><span data-i18n="onboardTitle"><span
+                        data-i18n="onboardTitle">Personalize Your Journey</span></span></h3>
             <p data-i18n="onboardDesc">Tell us a bit about yourself so we can guide you better.</p>
             <div style="margin-bottom: 1.5rem; text-align:left;">
-                <label data-i18n="onboardQ1" style="display:block; margin-bottom:0.5rem; font-weight:600;" data-i18n="onboardQ1">Are you a first-time voter?</label>
+                <label data-i18n="onboardQ1" style="display:block; margin-bottom:0.5rem; font-weight:600;"
+                    data-i18n="onboardQ1">Are you a first-time voter?</label>
                 <select id="onboarding-firsttime" class="nav-lang-sel" style="width:100%;">
                     <option value="yes" data-i18n="onboardA1Yes">Yes</option>
                     <option value="no" data-i18n="onboardA1No">No</option>
                 </select>
-                
-                <label data-i18n="onboardQ2" style="display:block; margin-top:1rem; margin-bottom:0.5rem; font-weight:600;" data-i18n="onboardQ2">Have you registered to vote?</label>
+
+                <label data-i18n="onboardQ2"
+                    style="display:block; margin-top:1rem; margin-bottom:0.5rem; font-weight:600;"
+                    data-i18n="onboardQ2">Have you registered to vote?</label>
                 <select id="onboarding-registered" class="nav-lang-sel" style="width:100%;">
                     <option value="no" data-i18n="onboardA2No">No, I need to register</option>
                     <option value="yes" data-i18n="onboardA2Yes">Yes, I am registered</option>
                 </select>
             </div>
-            <button class="btn-primary w-100" id="btn-start-personalized" data-i18n="onboardBtn" data-i18n="onboardBtn">Start My Journey</button>
+            <button class="btn-primary w-100" id="btn-start-personalized" data-i18n="onboardBtn"
+                data-i18n="onboardBtn">Start My Journey</button>
         </div>
     </div>
 </body>
+
 </html>
