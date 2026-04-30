@@ -84,9 +84,8 @@ const landingProgressCircle = document.getElementById('landing-progress-circle')
 
 // --- Initialization ---
 
-
-
 function init() {
+    loadPreferences();
     bindEvents();
     buildStepper();
     buildKnowledgeCards();
@@ -103,16 +102,39 @@ function init() {
     }
 }
 
+function loadPreferences() {
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        if (btnThemeToggle) btnThemeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+
+    // Load Language
+    const savedLang = localStorage.getItem('lang') || 'en';
+    currentLang = savedLang;
+    const globalLangSel = document.getElementById('global-lang-select');
+    if (globalLangSel) globalLangSel.value = savedLang;
+}
+
 function updateAppLanguage() {
     const tl = window.translations[currentLang].appTranslations;
     if (!tl) return;
     
+    // Update local storage
+    localStorage.setItem('lang', currentLang);
+    document.documentElement.lang = currentLang;
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (tl[key]) {
             el.innerHTML = tl[key];
         }
     });
+
+    // Update placeholders
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) chatInput.placeholder = currentLang === 'hi' ? 'अपना प्रश्न पूछें...' : 'Type your question...';
 
     // Also update dynamic UI
     buildVoterIdUI();
@@ -175,11 +197,10 @@ function setupChatbot() {
             } else {
                 // Fallback to local matching if API fails
                 let reply = currentLang === 'hi' ? "मुझे इसके बारे में पक्का पता नहीं है। आप अपने मतदान केंद्र, आवश्यक दस्तावेजों या ईवीएम(EVM) के बारे में पूछ सकते हैं।" : 
-                            currentLang === 'mr' ? "मला याबद्दल खात्री नाही. तुम्ही तुमच्या मतदान केंद्राबद्दल, आवश्यक कागदपत्रांबद्दल किंवा ईव्हीएम(EVM) बद्दल विचारू शकता." : 
-                            currentLang === 'ta' ? "இதைப் பற்றி எனக்கு உறுதியாகத் தெரியவில்லை. உங்கள் வாக்குச்சாவடி, தேவையான ஆவணங்கள் அல்லது EVMகள் பற்றி கேட்கலாம்." :
                             "I'm not sure about that. Try asking about your polling booth, required documents, or EVMs.";
                 
-                for (let item of window.translations[currentLang].electionData.chatResponses) {
+                const responses = window.translations[currentLang].electionData.chatResponses;
+                for (let item of responses) {
                     if (item.keywords.some(kw => textLower.includes(kw))) {
                         reply = item.response;
                         break;
